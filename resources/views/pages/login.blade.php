@@ -23,17 +23,24 @@
     <form class="align-items-center" id="phoneForm">
         @csrf
         <div class="d-flex align-items-center justify-content-center">
-            <input class="no-border w-100" name="phone" type="text" id="phone" placeholder="Enter Your Phone Number" />
+            <input class="no-border w-100" name="phone" type="number" id="phone"
+                placeholder="Enter Your Phone Number" />
+
+            <!-- <input
+                class="no-border w-100"
+                name="phone"
+                type="text"
+                id="phone"
+                placeholder="Enter Your Phone Number" /> -->
         </div>
 
-        <!-- <a class="action-button mt-5" id="login-button" href="{{ route('information') }}">
-            <div class="d-flex">
-                <div>
-                    Login
-                </div>
-            </div>
-        </a> -->
-        <button class="action-button mt-5" type="submit">Login</button>
+        <!-- <a class="action-button mt-5" id="login-button" href="{{ route('information') }}"> -->
+        <div class="d-flex">
+            <button class="action-button" type="submit">
+                Login
+            </button>
+        </div>
+        <!-- </a> -->
     </form>
 </div>
 @endsection

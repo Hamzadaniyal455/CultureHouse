@@ -16,7 +16,7 @@
     });
 
     document.querySelector("#phoneForm").addEventListener("submit", async function(e) {
-        e.preventDefault(); // Prevent default form submission
+        // e.preventDefault();
 
         if (iti.isValidNumber()) {
             // Get the full phone number
@@ -24,7 +24,7 @@
 
             // Send the phone number via AJAX
             try {
-                const response = await fetch("{{ route('login.submit') }}", {
+                const response = await fetch("{{ route('login_store') }}", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

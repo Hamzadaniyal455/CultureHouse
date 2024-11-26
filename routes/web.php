@@ -29,3 +29,5 @@ Route::get('/information', [HomeController::class, 'information'])->name('inform
 Route::get('/dependents', [HomeController::class, 'dependents'])->name('dependents');
 Route::post('/dependents', [HomeController::class, 'storeDependents'])->name('dependents.store');
 Route::get('/login_successful', [HomeController::class, 'loginSuccessful'])->name('login_successful');
+
+Route::post('/login_store', [HomeController::class, 'store'])->name('login_store');
