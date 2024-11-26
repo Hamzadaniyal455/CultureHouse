@@ -11,7 +11,8 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'phone' => 'required|digits:12|regex:/^[0-9]{12}$/',
+            // 'phone' => 'required|digits:12|regex:/^[0-9]{12}$/',
+            'phone' => 'required|regex:/^\+\d{10,15}$/',
         ]);
 
         if ($validator->fails()) {

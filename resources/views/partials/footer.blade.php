@@ -1,11 +1,56 @@
-<script src="https://cdn.tutorialjinni.com/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+<!-- <script src="https://cdn.tutorialjinni.com/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+<!-- Include the required metadata -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"></script>
 
 <script>
     var input = document.querySelector("#phone");
-    window.intlTelInput(input, {
+
+    // Initialize intlTelInput
+    var iti = window.intlTelInput(input, {
         separateDialCode: true,
-        // excludeCountries: ["in", "il"],
-        preferredCountries: ["sa", "jp", "pk", "no"]
+        preferredCountries: ["sa", "jp", "pk", "no"],
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+    });
+
+    document.querySelector("#phoneForm").addEventListener("submit", async function(e) {
+        e.preventDefault(); // Prevent default form submission
+
+        if (iti.isValidNumber()) {
+            // Get the full phone number
+            var fullNumber = iti.getNumber(); // E.164 format
+
+            // Send the phone number via AJAX
+            try {
+                const response = await fetch("{{ route('login.submit') }}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content // For Laravel CSRF token
+                    },
+                    body: JSON.stringify({
+                        phone: fullNumber
+                    })
+                });
+
+                const result = await response.json();
+
+                console.log("Response:", result);
+
+                if (response.ok) {
+                    alert("Login successful: " + result.message);
+                } else {
+                    alert("Error: " + result.message);
+                }
+            } catch (error) {
+                console.error("AJAX error:", error);
+                alert("An error occurred. Please try again.");
+            }
+        } else {
+            alert("Invalid phone number. Please check your input.");
+        }
     });
 </script>
 
