@@ -16,15 +16,11 @@
     });
 
     document.querySelector("#phoneForm").addEventListener("submit", async function(e) {
-        // e.preventDefault();
-
+        e.preventDefault();
         if (iti.isValidNumber()) {
-            // Get the full phone number
-            var fullNumber = iti.getNumber(); // E.164 format
-
-            // Send the phone number via AJAX
+            var fullNumber = iti.getNumber();
             try {
-                const response = await fetch("{{ route('login_store') }}", {
+                const response = await fetch("{{ route('login.submit') }}", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -37,19 +33,20 @@
 
                 const result = await response.json();
 
-                console.log("Response:", result);
+                // console.log("Response:", result);
 
-                if (response.ok) {
-                    alert("Login successful: " + result.message);
+                if (result.code == "1") {
+                    window.location = "/information";
                 } else {
                     alert("Error: " + result.message);
                 }
             } catch (error) {
-                console.error("AJAX error:", error);
+                // console.error("AJAX error:", error);
                 alert("An error occurred. Please try again.");
             }
         } else {
             alert("Invalid phone number. Please check your input.");
+            
         }
     });
 </script>

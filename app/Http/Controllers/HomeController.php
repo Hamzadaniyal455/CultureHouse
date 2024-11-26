@@ -32,12 +32,16 @@ class HomeController extends Controller
     public function dependents()
     {
         $visitor = session('visitor');
-        $dependents = Dependent::where('visitor_id', $visitor->id);
-        return view('pages.dependents', compact('dependents'));
+        $dependents = Dependent::where('visitor_id',$visitor->id)->get();
+        return view('pages.dependents',compact('dependents'));
     }
 
-    public function loginSuccessful()
-    {
+    public function checkDependents(Request $request) {
+        session(['dependents'=>$request->input('dependents')]);
+        return redirect()->route('visit_info.save');
+    }
+
+    public function loginSuccessful() {
         return view('pages.login_successful');
     }
 

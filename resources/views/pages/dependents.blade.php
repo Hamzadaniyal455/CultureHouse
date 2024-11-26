@@ -25,107 +25,49 @@
         <hr>
     </div>
 </div>
-<div id="companions-list" class="companions-list mb-5">
-    <div class="row">
-        <!-- First Companion Card -->
-        <div class="col-md-6 col-sm-6 mb-3">
-            <div class="companion-card border p-3">
-                <div class="row">
-                    <div class="col-3">
-                        <i class="fa fa-user m-2"></i>
-                    </div>
-                    <div class="col-7">
-                        <p><strong>Wateen Alwaleed</strong></p>
-                    </div>
-                    <div class="col-2 text-end">
-                        <input class="m-2" type="checkbox" name="dependents[]" value="Wateen Alwaleed">
-                    </div>
-                    <div class="col-6">
-                        <p>Gender: Female</p>
-                    </div>
-                    <div class="col-6 text-end">
-                        <p>Age: 11 years</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Second Companion Card -->
-        <div class="col-md-6 col-sm-6 mb-3">
-            <div class="companion-card border p-3">
-                <div class="row">
-                    <div class="col-3">
-                        <i class="fa fa-user m-2"></i>
-                    </div>
-                    <div class="col-7">
-                        <p><strong>Wateen Alwaleed</strong></p>
-                    </div>
-                    <div class="col-2 text-end">
-                        <input class="m-2" type="checkbox" name="dependents[]" value="Wateen Alwaleed">
-                    </div>
-                    <div class="col-6">
-                        <p>Gender: Female</p>
-                    </div>
-                    <div class="col-6 text-end">
-                        <p>Age: 11 years</p>
+<form action="{{ route('dependents.submit') }}" method="POST">
+    @csrf
+    <div id="companions-list" class="companions-list mb-5">
+        @if ($dependents)
+            <div class="row">
+                @foreach ($dependents as $dependent)
+                <div class="col-md-6 col-sm-6 mb-3">
+                    <div class="companion-card border p-3">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-user m-2"></i>
+                            </div>
+                            <div class="col-7">
+                                <p><strong>{{ $dependent->name }}</strong></p>
+                            </div>
+                            <div class="col-2 text-end">
+                                <input class="m-2" type="checkbox" name="dependents[]" value="{{ $dependent->id }}">
+                            </div>
+                            <div class="col-6">
+                                <p>Gender: {{ $dependent->gender }}</p>
+                            </div>
+                            <div class="col-6 text-end">
+                                <p>Age: {{ \Carbon\Carbon::parse($dependent->birth_year.'-01-01')->diff(\Carbon\Carbon::now())->format('%y years'); }}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                @endforeach
             </div>
-        </div>
-
-        <!-- Third Companion Card -->
-        <div class="col-md-6 col-sm-6 mb-3">
-            <div class="companion-card border p-3">
-                <div class="row">
-                    <div class="col-3">
-                        <i class="fa fa-user m-2"></i>
-                    </div>
-                    <div class="col-7">
-                        <p><strong>Wateen Alwaleed</strong></p>
-                    </div>
-                    <div class="col-2 text-end">
-                        <input class="m-2" type="checkbox" name="dependents[]" value="Wateen Alwaleed">
-                    </div>
-                    <div class="col-6">
-                        <p>Gender: Female</p>
-                    </div>
-                    <div class="col-6 text-end">
-                        <p>Age: 11 years</p>
-                    </div>
-                </div>
+        @else
+            <div class="row">
+                <p>No Compainions</p>
             </div>
-        </div>
-
-        <!-- Fourth Companion Card (wraps to the next row) -->
-        <div class="col-md-6 col-sm-6 mb-3">
-            <div class="companion-card border p-3">
-                <div class="row">
-                    <div class="col-3">
-                        <i class="fa fa-user m-2"></i>
-                    </div>
-                    <div class="col-7">
-                        <p><strong>Wateen Alwaleed</strong></p>
-                    </div>
-                    <div class="col-2 text-end">
-                        <input class="m-2" type="checkbox" name="dependents[]" value="Wateen Alwaleed">
-                    </div>
-                    <div class="col-6">
-                        <p>Gender: Female</p>
-                    </div>
-                    <div class="col-6 text-end">
-                        <p>Age: 11 years</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endif
     </div>
-</div>
 
-<div class="tw-center">
-    <a href="{{ route('login_successful') }}">
-        <button class="action-button-black">Continue Login</button>
-    </a>
-</div>
+    <div class="tw-center">
+        <!-- <a href="{{ route('login_successful') }}"> -->
+            <button class="action-button-black" type="submit">Continue Login</button>
+        <!-- </a> -->
+    </div>
+</form>
+
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

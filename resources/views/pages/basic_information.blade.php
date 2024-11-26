@@ -33,7 +33,7 @@
     </div>
    
     <div class="tw-center">
-        <a href="{{ route('dependents') }}">
+        <a href="{{ route('dependents')}}">
             <button class="action-button-black">Continue Login</button>
         </a>
     </div>
