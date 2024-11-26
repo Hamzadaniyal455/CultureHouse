@@ -1,0 +1,47 @@
+@media only screen and (min-width: 768px) {
+    .container {
+        width: 630px ! important;
+    }
+
+    #language-toggle {
+        top: 50px;
+        left: 30px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    header p {
+        font-size: 14px;
+    }
+
+    main h2 {
+        font-size: 18px;
+    }
+
+    .action-button {
+        width: 500px !important;
+        /* font-size: 19px; */
+    }
+
+    .form-group {
+        width: 500px !important;
+    }
+
+    .span-or {
+        font-size: 40px !important;
+    }
+
+    .logo {
+        width: 300px;
+    }
+
+    #welcome-text {
+        font-size: 45px;
+    }
+
+    .buttons {
+        flex-direction: row;
+    }
+}
