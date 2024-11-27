@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Dependent;
 use Illuminate\Http\Request;
+use App\Http\Controllers\VisitorController;
+use App\Models\Visitor;
 
 class HomeController extends Controller
 {
@@ -34,7 +36,8 @@ class HomeController extends Controller
     public function information_reg()
     {
         $visitor = session('visitor');
-        return view('pages.basic_information_reg', compact('visitor'));
+        $dependents = session('dependents');
+        return view('pages.basic_information_reg', compact('dependents','visitor'));
     }
 
     public function dependents()
@@ -48,6 +51,7 @@ class HomeController extends Controller
     {
         $visitor = session('visitor');
         $dependents = Dependent::where('visitor_id',$visitor->id)->get();
+        session(['dependents'=>$dependents]);
         return view('pages.dependents_reg',compact('dependents', 'visitor'));
     }
 

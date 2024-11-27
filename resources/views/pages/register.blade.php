@@ -9,148 +9,13 @@
             alt="">
     </div>
 
-    {{-- <form id="registration-form">
-        <label for="visitor-type">Visitor Type</label>
-        <div class="visitor-type">
-            <button class="type-option active"
-                data-type="citizen"
-                type="button">Citizen</button>
-            <button class="type-option"
-                data-type="resident"
-                type="button">Resident</button>
-            <button class="type-option"
-                data-type="tourist"
-                type="button">Tourist</button>
-        </div>
-
-        <div class="form-section active text-left"
-            id="form-citizen">
-            <div class="mb-3">
-                <label for="full-name">Full Name</label>
-                <input id="citizen-full-name"
-                    type="text"
-                    placeholder="Enter your name..."
-                    required>
-            </div>
-            <div class="mb-3">
-                <label for="id-number">ID Number</label>
-                <input id="citizen-id-number"
-                    type="text"
-                    placeholder="Enter your ID number"
-                    required>
-            </div>
-
-            <div class="mb-3">
-                <label for="mobile-number">Mobile Number</label>
-                <input class="no-border w-100 phone"
-                    name="phone"
-                    type="number"
-                    placeholder="Enter Your Phone Number" />
-            </div>
-
-            <div class="mb-3">
-
-                <label for="gender">Gender</label>
-                <div class="gender">
-                    <button class="gender-option"
-                        data-gender="male"
-                        type="button">Male</button>
-                    <button class="gender-option"
-                        data-gender="female"
-                        type="button">Female</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-section text-left"
-            id="form-resident">
-            <div class="mb-3">
-                <label for="full-name">Full Name</label>
-                <input id="resident-full-name"
-                    type="text"
-                    placeholder="Enter your name..."
-                    required>
-            </div>
-
-            <div class="mb-3">
-                <label for="id-number">Iqama Number</label>
-                <input id="resident-id-number"
-                    type="text"
-                    placeholder="Enter your Iqama number"
-                    required>
-            </div>
-
-            <div class="mb-3">
-                <label for="mobile-number">Mobile Number</label>
-                <input class="no-border w-100 phone"
-                    name="phone"
-                    type="number"
-                    placeholder="Enter Your Phone Number" />
-            </div>
-
-            <div class="mb-3">
-                <label for="gender">Gender</label>
-                <div class="gender">
-                    <button class="gender-option"
-                        data-gender="male"
-                        type="button">Male</button>
-                    <button class="gender-option"
-                        data-gender="female"
-                        type="button">Female</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-section text-left"
-            id="form-tourist">
-            <div class="mb-3">
-                <label for="full-name">Full Name</label>
-                <input id="tourist-full-name"
-                    type="text"
-                    placeholder="Enter your name..."
-                    required>
-            </div>
-
-            <div class="mb-3">
-                <label for="passport-number">Passport Number</label>
-                <input id="tourist-passport-number"
-                    type="text"
-                    placeholder="Enter your Passport number"
-                    required>
-            </div>
-
-            <div class="mb-3">
-                <label for="mobile-number">Mobile Number</label>
-                <input class="no-border w-100 phone"
-                    name="phone"
-                    type="number"
-                    placeholder="Enter Your Phone Number" />
-            </div>
-
-            <div class="mb-3">
-                <label for="gender">Gender</label>
-                <div class="gender">
-                    <button class="gender-option"
-                        data-gender="male"
-                        type="button">Male</button>
-                    <button class="gender-option"
-                        data-gender="female"
-                        type="button">Female</button>
-                </div>
-            </div>
-        </div>
-
-        <button class="submit-button"
-            type="submit">Submit</button>
-    </form> --}}
-
     {{-- <form action="{{ route('registration.store') }}" id="registration-form"> --}}
         <label for="visitor-type">Visitor Type</label>
 
         <div class="visitor-type">
             <button class="type-option active"
-                data-type="citizen"
-                type="button">Citizen</button>
+                data-type="National"
+                type="button">National</button>
             <button class="type-option"
                 data-type="resident"
                 type="button">Resident</button>
@@ -163,6 +28,7 @@
             <div class="mb-3">
                 <label for="full-name">Full Name</label>
                 <input id="full-name"
+                    name="full-name"
                     type="text"
                     placeholder="Enter your name..."
                     required>
@@ -172,11 +38,12 @@
                 id="field-id-number">
                 <label for="id-number">ID Number</label>
                 <input id="id-number"
+                    name="id-number"
                     type="text"
                     placeholder="Enter your ID number">
             </div>
 
-            <div class="mb-3"
+            <!-- <div class="mb-3"
                 id="field-iqama-number"
                 style="display: none;">
                 <label for="iqama-number">Iqama Number</label>
@@ -192,12 +59,13 @@
                 <input id="passport-number"
                     type="text"
                     placeholder="Enter your Passport number">
-            </div>
+            </div> -->
 
             <div>
                 <label for="mobile-number">Mobile Number</label>
                 <input class="phone"
                     id="mobile-number"
+                    name="mobile-number"
                     type="tel"
                     placeholder="Enter your mobile number"
                     required>
@@ -207,9 +75,6 @@
                 id="field-nationality"
                 style="display: none;">
                 <label for="nationality">Nationality</label>
-                {{-- <input id="nationality"
-                    type="text"
-                    placeholder="Enter your nationality"> --}}
                 <select id="nationality" name="nationality">
                     <option value="">-- select one --</option>
                     <option value="afghan">Afghan</option>
@@ -363,7 +228,7 @@
                     <option value="samoan">Samoan</option>
                     <option value="san marinese">San Marinese</option>
                     <option value="sao tomean">Sao Tomean</option>
-                    <option value="saudi">Saudi</option>
+                    <option value="saudi" selected>Saudi</option>
                     <option value="scottish">Scottish</option>
                     <option value="senegalese">Senegalese</option>
                     <option value="serbian">Serbian</option>
@@ -412,58 +277,118 @@
             <label for="gender">Gender</label>
             <div class="gender">
                 <button class="gender-option active"
-                    data-gender="male"
+                    data-gender="Male"
                     type="button">Male</button>
                 <button class="gender-option"
-                    data-gender="female"
+                    data-gender="Female"
                     type="button">Female</button>
             </div>
         </div>
 
-        <a href="{{ route('dependents_reg') }}">
+        <!-- <a href="{{ route('dependents_reg') }}">
             Submit
-        </a>
-        {{-- <button class="submit-button"
-            type="submit">Submit</button> --}}
+        </a> -->
+        <button class="submit-button" id="submit-button" onclick="handleSubmit(event)" type="submit">Submit</button>
     {{-- </form> --}}
 
     <script>
+        async function handleSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('full-name').value;
+            const id_number = document.getElementById('id-number').value;
+            const nationality = document.getElementById('nationality').value;
+            const gender = document.querySelector('.gender-option.active').getAttribute('data-gender');
+            const type = document.querySelector('.type-option.active').getAttribute('data-type');
+
+            if (!iti.isValidNumber()) {
+                alert("Please enter a valid phone number.");
+                return;
+            }
+            
+            
+
+            if (name && id_number && nationality && gender && iti.isValidNumber()) {
+
+                var fullNumber = iti.getNumber();
+                const request = await fetch("{{ route('register.check') }}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({
+                        phone: fullNumber
+                    })
+                });
+                const check_registration = await request.json();
+                console.log(check_registration);
+                if (check_registration.code == "1") {
+                    alert(check_registration.message);
+                    return;
+                }
+                
+                const response = await fetch("{{ route('register.submit') }}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        id_number: id_number,
+                        nationality: nationality,
+                        gender: gender,
+                        type: type,
+                        phone: fullNumber
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.code == "1") {
+                    console.log(result);
+                    window.location = "/dependents_reg";
+                } else {
+                    alert("Error: " + result.message);
+                }
+            }else{
+                alert('Please fill in all fields!');
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const typeButtons = document.querySelectorAll('.type-option');
             const idField = document.getElementById('field-id-number');
-            const iqamaField = document.getElementById('field-iqama-number');
-            const passportField = document.getElementById('field-passport-number');
+            // const iqamaField = document.getElementById('field-iqama-number');
+            // const passportField = document.getElementById('field-passport-number');
             const nationalityField = document.getElementById('field-nationality');
 
-            // Visitor type button click handler
             typeButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     // Reset active class
                     typeButtons.forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
 
-                    // Show/Hide fields based on visitor type
                     const type = button.getAttribute('data-type');
-                    if (type === 'citizen') {
-                        idField.style.display = 'block';
-                        iqamaField.style.display = 'none';
-                        passportField.style.display = 'none';
+                    if (type === 'National') {
+                        // idField.style.display = 'block';
+                        // iqamaField.style.display = 'none';
+                        // passportField.style.display = 'none';
                         nationalityField.style.display = 'none';
                     } else if (type === 'resident') {
-                        idField.style.display = 'none';
-                        iqamaField.style.display = 'block';
-                        passportField.style.display = 'none';
+                        // idField.style.display = 'none';
+                        // iqamaField.style.display = 'block';
+                        // passportField.style.display = 'none';
                         nationalityField.style.display = 'block';
                     } else if (type === 'tourist') {
-                        idField.style.display = 'none';
-                        iqamaField.style.display = 'none';
-                        passportField.style.display = 'block';
+                        // idField.style.display = 'none';
+                        // iqamaField.style.display = 'none';
+                        // passportField.style.display = 'block';
                         nationalityField.style.display = 'block';
                     }
                 });
             });
 
-            // Gender selection logic
             const genderButtons = document.querySelectorAll('.gender-option');
             genderButtons.forEach(button => {
                 button.addEventListener('click', () => {

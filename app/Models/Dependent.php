@@ -9,5 +9,7 @@ class Dependent extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['visitor_id', 'name','birth_year','gender'];
+
     public $timestamps = false;
 }

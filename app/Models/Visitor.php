@@ -11,5 +11,7 @@ class Visitor extends Model
 
     protected $table = 'visitor';
 
+    protected $fillable = ['name', 'phone', 'type','nationality', 'id_number', 'gender', 'date'];
+
     public $timestamps = false;
 }

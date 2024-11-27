@@ -38,6 +38,7 @@
                 Companion Details
             </h4>
             <div>
+                <?php $i=0; ?>
                 <table class="table">
                     <thead class="thead-dark border">
                         <tr>
@@ -49,14 +50,22 @@
                         </tr>
                     </thead>
                     <tbody class="border">
-                        {{-- @foreach ($dependents as $dependent)
+                    @if ($dependents->isNotEmpty())
+                    
+                        @foreach ($dependents as $dependent)
                             <tr>
+                                <td><?php echo ++$i; ?></td>
                                 <td>{{ $dependent->name }}</td>
                                 <td>{{ $dependent->gender }}</td>
-                                <td>{{ $dependent->age }}</td>
+                                <td>{{ \Carbon\Carbon::parse($dependent->birth_year . '-01-01')->diff(\Carbon\Carbon::now())->format('%y years') }}</td>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
+                    @else
                         <tr>
+                            <td colspan="4">No dependents found.</td>
+                        </tr>
+                    @endif
+                        <!-- <tr>
                             <td>1</td>
                             <td>John Doe</td>
                             <td>Male</td>
@@ -82,7 +91,7 @@
                             {{-- <td class="text-center">
                                 <i class="fa fa-edit"></i>
                             </td> --}}
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>

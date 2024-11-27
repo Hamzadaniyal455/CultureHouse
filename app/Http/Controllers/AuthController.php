@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Visitor;
+use App\Models\DependentsVisitInfo;
+use App\Models\VisitInfo;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -45,5 +47,30 @@ class AuthController extends Controller
             ]);
             // return redirect()->back()->with('error', 'Phone number not found.');
         }
+    }
+
+    public function saveVisitInfoRegistration()
+    {
+        $visitor = session('visitor');
+        if(!empty($visitor)){
+            $visitInfo = VisitInfo::create([
+                'visitor_id' => $visitor->id,
+                'date' => now()->toDateTimeString(),
+            ]);
+            $dependents = session('dependents');
+            if(!empty($dependents)){
+                foreach($dependents as $dependent){
+                    $dependentVisitInfo = DependentsVisitInfo::create([
+                        'visit_id' => $visitInfo->id,
+                        'dependent_id' => $dependent->id,
+                    ]);
+                }
+            }
+        }
+
+        return response()->json([
+            'code' => '1',
+            'message' => 'Visit info saved successfully.'
+        ]);
     }
 }

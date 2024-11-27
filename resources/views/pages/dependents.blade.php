@@ -38,7 +38,7 @@
         @csrf
         <div class="companions-list mb-5"
             id="companions-list">
-            @if ($dependents)
+            @if ($dependents->isNotEmpty())
                 <div class="row">
                     @foreach ($dependents as $dependent)
                         <div class="col-md-6 col-sm-6 mb-3">
@@ -78,8 +78,13 @@
 
         <div class="tw-center">
             <button class="action-button-black"
+                id="action-button"
                 type="submit">
-                Continue Login
+                @if ($visitor)
+                    Continue Login
+                @else
+                    Continue Registration
+                @endif
             </button>
         </div>
     </form>
@@ -116,8 +121,10 @@
                         <div class="col-9">
                             <input class="form-control mx-2"
                                 id="companion-name"
+                                name="name"
                                 type="text"
                                 placeholder="Enter companion name">
+                                <input type="hidden" name="page_name" id="page_name" value="dependents">
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-3">
@@ -125,19 +132,24 @@
                                 Birth Year
                             </b>
                         </label>
-                        {{-- <input class="form-control text-center mx-2 col-9"
-                            id="companion-age"> --}}
-
-                        <input id="companion-age"
-                            type="text" />
+                        <!-- <input class="form-control text-center mx-2 col-9" id="companion-age" readonly> -->
+                        <div class="col-9">
+                            <select class="form-control mx-2" name="birth_year" id="birth_year">
+                                <?php
+                                    $year1 = date("Y");
+                                    $endyear = date("Y")-17;
+                                    for ($year = $year1; $year >= $endyear; $year--) {
+                                        echo '<option value="'.$year.'">'.$year.'</option>';
+                                    }
+                                ?>
+                            </select>
+                        </div>
                     </div>
                     <div>
                         <!-- <label for="companion-gender">Gender</label> -->
                         <div class="d-flex">
-                            <button class="btn  gender-btn"
-                                id="male-btn">Male</button>
-                            <button class="btn  gender-btn"
-                                id="female-btn">Female</button>
+                            <button class="btn gender-btn" value="male" name="gender-male" id="male-btn">Male</button>
+                            <button class="btn gender-btn" value="female" name="gender-female" id="female-btn">Female</button>
                         </div>
                     </div>
                 </div>
@@ -152,6 +164,4 @@
             </div>
         </div>
     </div>
-
-    <!-- </div> -->
 @endsection

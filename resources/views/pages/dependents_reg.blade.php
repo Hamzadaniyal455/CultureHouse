@@ -33,12 +33,12 @@
             <hr>
         </div>
     </div>
-    <form action="{{ route('dependents.submit') }}"
+    <!-- <form action="{{ route('dependents.submit') }}"
         method="POST">
-        @csrf
+        @csrf -->
         <div class="companions-list mb-5"
             id="companions-list">
-            @if ($dependents)
+            @if ($dependents->isNotEmpty())
                 <div class="row">
                     @foreach ($dependents as $dependent)
                         <div class="col-md-6 col-sm-6 mb-3">
@@ -76,16 +76,15 @@
             @endif
         </div>
 
-        <a class="action-button-black" href="{{ route('information_reg') }}">
-            Continue Registration
-        </a>
-        {{-- <div class="tw-center">
-            <button class="action-button-black"
-                type="submit">
+        <!-- <a href="{{ route('information_reg') }}">
+                <button class="action-button-black">Continue Registration</button>
+            </a> -->
+        <div class="tw-center">
+            <button id="continue-reg-button" type="submit">
                 Continue Registration
             </button>
-        </div> --}}
-    </form>
+        </div>
+    <!-- </form> -->
 
     <div class="modal fade"
         id="exampleModal"
@@ -121,6 +120,7 @@
                                 id="companion-name"
                                 type="text"
                                 placeholder="Enter companion name">
+                            <input type="hidden" name="page_name" id="page_name" value="dependents_reg">
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-3">
@@ -128,11 +128,18 @@
                                 Birth Year
                             </b>
                         </label>
-                        {{-- <input class="form-control text-center mx-2 col-9"
-                            id="companion-age"> --}}
 
-                        <input id="companion-age"
-                            type="text" />
+                            <div class="col-9">
+                            <select class="form-control mx-2" name="birth_year" id="birth_year">
+                                <?php
+                                    $year1 = date("Y");
+                                    $endyear = date("Y")-17;
+                                    for ($year = $year1; $year >= $endyear; $year--) {
+                                        echo '<option value="'.$year.'">'.$year.'</option>';
+                                    }
+                                ?>
+                            </select>
+                        </div>
                     </div>
                     <div>
                         <!-- <label for="companion-gender">Gender</label> -->
@@ -155,6 +162,24 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        document.getElementById('continue-reg-button').addEventListener('click', async function() {
+            const response = await fetch("{{ route('visit_info.reg') }}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
+                            .content // For Laravel CSRF token
+                    },
+                    body: JSON.stringify({
+                        name: 1
+                    })
+                });
+            const result = await response.json();
+            window.location = "/information_reg";
+        });
+    </script>
 
     <!-- </div> -->
 @endsection

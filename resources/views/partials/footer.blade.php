@@ -130,25 +130,39 @@
         });
 
         // Add companion logic
-        addCompanionButton.addEventListener('click', () => {
+        addCompanionButton.addEventListener('click',async () => {
             const name = document.getElementById('companion-name').value;
-            const age = ageInput.value;
+            const year = document.getElementById('birth_year').value;
             const gender = maleButton.classList.contains('active') ? 'Male' : 'Female';
+            const page_nam = document.getElementById('page_name').value;
+            if (name && year) {
+                const response = await fetch("{{ route('dependents.add') }}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
+                            .content // For Laravel CSRF token
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        year:year,
+                        gender: gender
+                    })
+                });
 
-            if (name && age) {
-                alert(`Companion added: \nName: ${name} \nAge: ${age} \nGender: ${gender}`);
+                const result = await response.json();
+
+                // console.log("Response:", result);
+
+                if (result.code == "1") {
+                    window.location = "/"+page_nam;
+                } else {
+                    alert("Error: " + result.message);
+                }
                 $('#exampleModal').modal('hide');
             } else {
                 alert('Please fill in all the fields.');
             }
-        });
-    });
-
-    $(document).ready(function() {
-        $("#companion-age").datepicker({
-            dateFormat: 'yy',
-            changeYear: true,
-            showButtonPanel: true
         });
     });
 </script>
