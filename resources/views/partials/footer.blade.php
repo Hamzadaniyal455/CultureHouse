@@ -25,7 +25,8 @@
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content // For Laravel CSRF token
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
+                            .content // For Laravel CSRF token
                     },
                     body: JSON.stringify({
                         phone: fullNumber
@@ -47,7 +48,7 @@
             }
         } else {
             alert("Invalid phone number. Please check your input.");
-            
+
         }
     });
 </script>
@@ -140,6 +141,14 @@
             } else {
                 alert('Please fill in all the fields.');
             }
+        });
+    });
+
+    $(document).ready(function() {
+        $("#companion-age").datepicker({
+            dateFormat: 'yy',
+            changeYear: true,
+            showButtonPanel: true
         });
     });
 </script>

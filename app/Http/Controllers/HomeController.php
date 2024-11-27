@@ -20,6 +20,8 @@ class HomeController extends Controller
 
     public function register()
     {
+        // $laravel =  session(['step'=>$step]);
+        // dd($laravel);
         return view('pages.register');
     }
 
@@ -29,6 +31,12 @@ class HomeController extends Controller
         return view('pages.basic_information', compact('visitor'));
     }
 
+    public function information_reg()
+    {
+        $visitor = session('visitor');
+        return view('pages.basic_information_reg', compact('visitor'));
+    }
+
     public function dependents()
     {
         $visitor = session('visitor');
@@ -36,9 +44,22 @@ class HomeController extends Controller
         return view('pages.dependents',compact('dependents', 'visitor'));
     }
 
+    public function dependents_reg()
+    {
+        $visitor = session('visitor');
+        $dependents = Dependent::where('visitor_id',$visitor->id)->get();
+        return view('pages.dependents_reg',compact('dependents', 'visitor'));
+    }
+
     public function checkDependents(Request $request) {
         session(['dependents'=>$request->input('dependents')]);
         return redirect()->route('visit_info.save');
+    }
+
+    public function checkDependentsReg(Request $request) {
+        // session(['dependents'=>$request->input('dependents')]);
+        return view('pages.basic_information_reg');
+        // return redirect()->route('visit_info.save');
     }
 
     public function loginSuccessful() {

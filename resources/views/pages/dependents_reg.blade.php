@@ -76,12 +76,15 @@
             @endif
         </div>
 
-        <div class="tw-center">
+        <a class="action-button-black" href="{{ route('information_reg') }}">
+            Continue Registration
+        </a>
+        {{-- <div class="tw-center">
             <button class="action-button-black"
                 type="submit">
-                Continue Login
+                Continue Registration
             </button>
-        </div>
+        </div> --}}
     </form>
 
     <div class="modal fade"

@@ -4,7 +4,7 @@
 
 @section('content')
     <div>
-        <h3>Login</h3>
+        <h3>Registration</h3>
         <div class="steps-indicator mt-5">
             <img src="{{ asset('images/Steps2.png') }}"
                 alt="">
@@ -33,7 +33,7 @@
             @endif
         </div>
 
-        {{-- <div class="text-left">
+        <div class="text-left">
             <h4>
                 Companion Details
             </h4>
@@ -45,35 +45,52 @@
                             <th>Name</th>
                             <th>Gender</th>
                             <th>Age</th>
+                            {{-- <th class="text-center">Action</th> --}}
                         </tr>
                     </thead>
                     <tbody class="border">
+                        {{-- @foreach ($dependents as $dependent)
+                            <tr>
+                                <td>{{ $dependent->name }}</td>
+                                <td>{{ $dependent->gender }}</td>
+                                <td>{{ $dependent->age }}</td>
+                            </tr>
+                        @endforeach --}}
                         <tr>
                             <td>1</td>
                             <td>John Doe</td>
                             <td>Male</td>
                             <td>25</td>
+                            {{-- <td class="text-center">
+                                <i class="fa fa-edit"></i>
+                            </td> --}}
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>John Doe</td>
                             <td>Male</td>
                             <td>25</td>
+                            {{-- <td class="text-center">
+                                <i class="fa fa-edit"></i>
+                            </td> --}}
                         </tr>
                         <tr>
                             <td>3</td>
                             <td>John Doe</td>
                             <td>Male</td>
                             <td>25</td>
+                            {{-- <td class="text-center">
+                                <i class="fa fa-edit"></i>
+                            </td> --}}
                         </tr>
                     </tbody>
                 </table>
             </div>
-        </div> --}}
+        </div>
 
         <div class="tw-center mt-5">
-            <a href="{{ route('dependents') }}">
-                <button class="action-button-black">Continue Login</button>
+            <a href="{{ route('login_successful') }}">
+                <button class="action-button-black">Continue Registration</button>
             </a>
         </div>
     </div>

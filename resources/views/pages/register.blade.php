@@ -144,7 +144,7 @@
             type="submit">Submit</button>
     </form> --}}
 
-    <form id="registration-form">
+    {{-- <form action="{{ route('registration.store') }}" id="registration-form"> --}}
         <label for="visitor-type">Visitor Type</label>
 
         <div class="visitor-type">
@@ -420,12 +420,12 @@
             </div>
         </div>
 
-        <a href="{{ route('dependents') }}">
+        <a href="{{ route('dependents_reg') }}">
             Submit
         </a>
         {{-- <button class="submit-button"
             type="submit">Submit</button> --}}
-    </form>
+    {{-- </form> --}}
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
