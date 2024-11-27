@@ -10,18 +10,18 @@
             <div>
                 Login
                 <span>
-                    <img src="./assets/images/login.png" class="mx-2" alt="">
+                    <img src="{{ asset('images/login.png') }}" class="mx-2" alt="">
                 </span>
             </div>
         </div>
     </a>
     <span class="span-or">OR</span>
-    <a class="action-button" id="register-button" href="#">
+    <a class="action-button" id="register-button" href="{{ route('register') }}">
         <div class="d-flex">
             <div>
                 Register
                 <span>
-                    <img src="./assets/images/Register.png" class="mx-2" alt="">
+                    <img src="{{ asset('images/register.png') }}" class="mx-2" alt="">
                 </span>
             </div>
         </div>

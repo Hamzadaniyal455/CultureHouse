@@ -6,7 +6,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"></script>
 
 <script>
-    var input = document.querySelector("#phone");
+    // var input = document.querySelector("#phone");
+    var input = document.querySelector(".phone");
 
     // Initialize intlTelInput
     var iti = window.intlTelInput(input, {

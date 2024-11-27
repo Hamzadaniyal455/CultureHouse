@@ -33,7 +33,7 @@ class HomeController extends Controller
     {
         $visitor = session('visitor');
         $dependents = Dependent::where('visitor_id',$visitor->id)->get();
-        return view('pages.dependents',compact('dependents'));
+        return view('pages.dependents',compact('dependents', 'visitor'));
     }
 
     public function checkDependents(Request $request) {
