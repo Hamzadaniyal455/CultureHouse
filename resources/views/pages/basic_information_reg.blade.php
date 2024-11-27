@@ -89,7 +89,7 @@
         </div>
 
         <div class="tw-center mt-5">
-            <a href="{{ route('login_successful') }}">
+            <a href="{{ route('reg_successful') }}">
                 <button class="action-button-black">Continue Registration</button>
             </a>
         </div>

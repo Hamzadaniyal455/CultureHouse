@@ -66,6 +66,10 @@ class HomeController extends Controller
         return view('pages.login_successful');
     }
 
+    public function regSuccessful() {
+        return view('pages.reg_successful');
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([

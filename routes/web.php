@@ -36,5 +36,6 @@ Route::post('/dependents_reg', [HomeController::class, 'checkDependentsReg'])->n
 Route::get('/save_visit_info', [VisitorController::class, 'saveVisitInfo'])->name('visit_info.save');
 // Route::post('/dependents', [HomeController::class, 'storeDependents'])->name('dependents.store');
 Route::get('/login_successful', [HomeController::class, 'loginSuccessful'])->name('login_successful');
+Route::get('/registration_successful', [HomeController::class, 'regSuccessful'])->name('reg_successful');
 
 Route::post('/login_store', [HomeController::class, 'store'])->name('login_store');
