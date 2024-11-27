@@ -24,7 +24,7 @@
             id="phoneForm">
             @csrf
             <div class="d-flex align-items-center justify-content-center">
-                <input class="no-border w-100"
+                <input class="phone no-border w-100"
                     id="phone"
                     name="phone"
                     type="number"
