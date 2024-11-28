@@ -15,8 +15,7 @@
             </div>
         </div>
     </a>
-    <span class="span-or">OR</span>
-    <a class="action-button" id="register-button" href="{{ route('register') }}">
+    <a class="action-button mt-3" id="register-button" href="{{ route('register') }}">
         <div class="d-flex">
             <div>
                 Register

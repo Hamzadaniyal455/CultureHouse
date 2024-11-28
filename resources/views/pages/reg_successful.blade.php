@@ -4,7 +4,7 @@
 
 @section('content')
 <div>
-    <h1>Regsitration Successful!</h1>
+    <h1>Registration Successful!</h1>
     <div class="row mt-5">
         <div class="col-md-8 text-left">
             <h4>

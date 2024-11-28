@@ -47,15 +47,15 @@
                                     <div class="col-3">
                                         <i class="fa fa-user m-2"></i>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-9">
                                         <p><strong>{{ $dependent->name }}</strong></p>
                                     </div>
-                                    <div class="col-2 text-end">
+                                    {{-- <div class="col-2 text-end">
                                         <input class="m-2"
                                             name="dependents[]"
                                             type="checkbox"
                                             value="{{ $dependent->id }}">
-                                    </div>
+                                    </div> --}}
                                     <div class="col-6">
                                         <p>Gender: {{ $dependent->gender }}</p>
                                     </div>
@@ -80,7 +80,7 @@
                 <button class="action-button-black">Continue Registration</button>
             </a> -->
         <div class="tw-center">
-            <button id="continue-reg-button" type="submit">
+            <button class="action-button-black" id="continue-reg-button" type="submit">
                 Continue Registration
             </button>
         </div>
