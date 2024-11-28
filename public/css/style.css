@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Times New Roman', Times, serif ! important;
     margin: 0;
     padding: 0;
     /* background-image: url("{{ asset('images/background_image.png') }}"); */
