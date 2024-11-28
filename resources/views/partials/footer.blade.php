@@ -130,7 +130,7 @@
         });
 
         // Add companion logic
-        addCompanionButton.addEventListener('click',async () => {
+        addCompanionButton.addEventListener('click', async () => {
             const name = document.getElementById('companion-name').value;
             const year = document.getElementById('birth_year').value;
             const gender = maleButton.classList.contains('active') ? 'Male' : 'Female';
@@ -145,7 +145,7 @@
                     },
                     body: JSON.stringify({
                         name: name,
-                        year:year,
+                        year: year,
                         gender: gender
                     })
                 });
@@ -155,7 +155,7 @@
                 // console.log("Response:", result);
 
                 if (result.code == "1") {
-                    window.location = "/"+page_nam;
+                    window.location = "/" + page_nam;
                 } else {
                     alert("Error: " + result.message);
                 }
@@ -164,5 +164,38 @@
                 alert('Please fill in all the fields.');
             }
         });
+
     });
+
+    const languageToggleButton = document.getElementById('language-toggle');
+
+    if (languageToggleButton) {
+        // Initialize the language value from localStorage or default to 'en'
+        let language = localStorage.getItem('language') || 'en';
+
+        // Update the button text based on the saved language
+        updateButtonText(language);
+
+        // Add click event listener
+        languageToggleButton.addEventListener('click', () => {
+            // Toggle the language value
+            language = language === 'en' ? 'ar' : 'en';
+
+            // Save the new value in localStorage
+            localStorage.setItem('language', language);
+
+            // Update the button text
+            updateButtonText(language);
+
+            window.location.reload();
+
+            // Log the current language to the console
+            console.log('Current Language:', language);
+        });
+
+        // Function to update button text
+        function updateButtonText(language) {
+            languageToggleButton.textContent = language === 'en' ? 'عربي' : 'English';
+        }
+    }
 </script>

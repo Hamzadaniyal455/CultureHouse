@@ -340,6 +340,7 @@ h3 {
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
+    text-align: center;
     margin-bottom: 20px;
     /* width: 80%; */
 }
@@ -452,7 +453,7 @@ h3 {
 
 /* modal */
 .modal-custom {
-    background-color: #F0F0F0 ! important;
+    background-image: url('../images/background_image.png');
     border-radius: 8px;
     padding: 20px;
 }

@@ -50,7 +50,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <button id="language-toggle">ENG</button>
+                    @if (Route::currentRouteName() === 'home')
+                        <button id="language-toggle">عربي</button>
+                    @endif
                 </div>
                 <div class="col-md-6 tw-center">
                     <img class="logo img-fluid"

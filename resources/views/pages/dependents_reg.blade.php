@@ -6,7 +6,7 @@
     <!-- <div class="mt-"> -->
     {{-- condition to check if user is already logged in so it will show New Registratio --}}
     <h3>
-        Login
+        New Registration
     </h3>
     {{-- <h3>Login</h3> --}}
     <div class="steps-indicator mt-5 mb-5">

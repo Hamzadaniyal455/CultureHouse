@@ -46,14 +46,14 @@
         </div>
 
         <!-- <div class="mb-3" id="field-iqama-number" style="display: none;">
-                    <label for="iqama-number">Iqama Number</label>
-                    <input id="iqama-number" type="text" placeholder="Enter your Iqama number">
-                </div>
+                        <label for="iqama-number">Iqama Number</label>
+                        <input id="iqama-number" type="text" placeholder="Enter your Iqama number">
+                    </div>
 
-                <div class="mb-3" id="field-passport-number" style="display: none;">
-                    <label for="passport-number">Passport Number</label>
-                    <input id="passport-number" type="text" placeholder="Enter your Passport number">
-                </div> -->
+                    <div class="mb-3" id="field-passport-number" style="display: none;">
+                        <label for="passport-number">Passport Number</label>
+                        <input id="passport-number" type="text" placeholder="Enter your Passport number">
+                    </div> -->
 
         <div>
             <label for="mobile-number">Mobile Number</label>
@@ -282,8 +282,8 @@
     </div>
 
     <!-- <a href="{{ route('dependents_reg') }}">
-                Submit
-            </a> -->
+                    Submit
+                </a> -->
     <div class="tw-center mt-3">
         <button class="action-button-black"
             id="submit-button"
@@ -363,7 +363,7 @@
             const iqamaField = document.getElementById('field-iqama-number');
             // const passportField = document.getElementById('field-passport-number');
             const nationalityField = document.getElementById('field-nationality');
-            
+
             typeButtons.forEach(button => {
                 iqamaField.style.display = 'none';
                 button.addEventListener('click', () => {
@@ -482,6 +482,12 @@
 
         .iti {
             padding: 0px !important;
+        }
+
+        div.iti.iti--allow-dropdown.iti--separate-dial-code {
+            border: none !important;
+            width: 600px ! important;
+            /* font-size: 20px; */
         }
     </style>
 @endsection
