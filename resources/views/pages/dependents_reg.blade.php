@@ -36,14 +36,15 @@
         </div>
     </div>
     <!-- <form action="{{ route('dependents.submit') }}" method="POST">
-                            @csrf -->
+                                @csrf -->
     <div class="companions-list mb-5"
         id="companions-list">
         @if ($dependents->isNotEmpty())
             <div class="row">
                 @foreach ($dependents as $dependent)
                     <div class="col-md-6 col-sm-6 mb-3">
-                        <div class="companion-card border p-3">
+                        <div class="companion-card border p-3"
+                            id="companion-card">
                             <div class="row">
                                 <div class="col-3">
                                     <i class="fa fa-user m-2"></i>
@@ -61,7 +62,7 @@
                                     <p class="gender">Gender:</p>
                                 </div>
                                 <div class="col-3">
-                                    <p>
+                                    <p >
                                         {{ $dependent->gender }}
                                     </p>
                                 </div>
@@ -99,8 +100,8 @@
     </div>
 
     <!-- <a href="{{ route('information_reg') }}">
-                                    <button class="action-button-black">Continue Registration</button>
-                                </a> -->
+                                        <button class="action-button-black">Continue Registration</button>
+                                    </a> -->
     <div class="tw-center">
         <button class="action-button-black"
             id="continue-reg-button"
@@ -266,6 +267,9 @@
                         </div>
                     </div>
                 </div>
+                <input id="page"
+                    type="hidden"
+                    value="register">
                 <div class="modal-footer text-end">
                     <button class="btn btn-black"
                         id="add-companion-btn"
@@ -316,6 +320,7 @@
         const female = document.getElementById('female-btn');
         const addButton = document.getElementById('add-companion-btn');
         const cancelButton = document.getElementById('cancel-button');
+        const comp_card = document.getElementById('companion-card');
 
         $(document).ready(function() {
             function updateLanguageContent(language) {
@@ -344,6 +349,7 @@
                     addButton.textContent = 'Add';
                     cancelButton.textContent = 'Cancel';
                     contRegButton.textContent = 'Continue Registration';
+                    comp_card.style.textAlign = 'left';
                 } else {
                     document.body.style.direction = 'rtl';
                     register.textContent = 'تسجيل جديد';
@@ -370,6 +376,7 @@
                     addButton.textContent = 'اضافة';
                     cancelButton.textContent = 'الغاء';
                     contRegButton.textContent = 'مُتابعة التّسجيل';
+                    comp_card.style.textAlign = 'right';
                 }
             }
 

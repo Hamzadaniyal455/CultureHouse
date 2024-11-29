@@ -31,7 +31,7 @@
     <div class="form-fields"
         id="form-fields">
         <div class="mb-3">
-            <label id="full-name"
+            <label id="full-name2"
                 for="full-name">Full Name</label>
             <input id="full-name"
                 name="full-name"
@@ -47,22 +47,23 @@
             </label>
             <label class="residence-number"
                 id="field-iqama-number"
-                for="id-number">Residence Number</label>
+                for="id-number">Residence Number
+            </label>
+
             <input id="id-number"
                 name="id-number"
-                type="text"
-                {{-- placeholder="Enter your ID number" --}}>
+                type="text">
         </div>
 
         <!-- <div class="mb-3" id="field-iqama-number" style="display: none;">
-                                                                                <label for="iqama-number">Iqama Number</label>
-                                                                                <input id="iqama-number" type="text" placeholder="Enter your Iqama number">
-                                                                            </div>
+                                                                                        <label for="iqama-number">Iqama Number</label>
+                                                                                        <input id="iqama-number" type="text" placeholder="Enter your Iqama number">
+                                                                                    </div>
 
-                                                                            <div class="mb-3" id="field-passport-number" style="display: none;">
-                                                                                <label for="passport-number">Passport Number</label>
-                                                                                <input id="passport-number" type="text" placeholder="Enter your Passport number">
-                                                                            </div> -->
+                                                                                    <div class="mb-3" id="field-passport-number" style="display: none;">
+                                                                                        <label for="passport-number">Passport Number</label>
+                                                                                        <input id="passport-number" type="text" placeholder="Enter your Passport number">
+                                                                                    </div> -->
 
         <div>
             <label id="mobile"
@@ -521,7 +522,7 @@
 
 
 
-            if (name && id_number && nationality && gender && iti.isValidNumber()) {
+            if (name && id_number && nationality && gender) {
 
                 var fullNumber = iti.getNumber();
                 const request = await fetch("{{ route('register.check') }}", {
@@ -658,7 +659,7 @@
         const citizen = document.getElementById('citizen');
         const resident = document.getElementById('resident');
         const tourist = document.getElementById('tourist');
-        const fullName = document.getElementById('full-name');
+        const fullName = document.getElementById('full-name2');
         const idNumber = document.getElementById('field-id-number');
         const residenceNumber = document.getElementsByClassName('field-iqama-number');
         const mobileNumber = document.getElementById('mobile');

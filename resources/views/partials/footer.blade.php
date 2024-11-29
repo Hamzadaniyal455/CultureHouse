@@ -135,33 +135,81 @@
             const year = document.getElementById('birth_year').value;
             const gender = maleButton.classList.contains('active') ? 'Male' : 'Female';
             const page_nam = document.getElementById('page_name').value;
-            if (name && year) {
-                const response = await fetch("{{ route('dependents.add') }}", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
-                            .content // For Laravel CSRF token
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        year: year,
-                        gender: gender
-                    })
-                });
+            const pageType = document.getElementById('page').value;
 
-                const result = await response.json();
+            if (name && year) {
+                if (pageType == 'login') {
+                    const response = await fetch("{{ route('dependents.add') }}", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRF-TOKEN": document.querySelector(
+                                    'meta[name="csrf-token"]')
+                                .content // For Laravel CSRF token
+                        },
+                        body: JSON.stringify({
+                            name: name,
+                            year: year,
+                            gender: gender
+                        })
+                    });
+                    const result = await response.json();
+                    if (result.code == "1") {
+                        window.location = "/" + page_nam;
+                    } else {
+                        alert("Error: " + result.message);
+                    };
+                    $('#exampleModal').modal('hide');
+                } else if (pageType == 'register') {
+                    const response = await fetch("{{ route('dependents.add') }}", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRF-TOKEN": document.querySelector(
+                                    'meta[name="csrf-token"]')
+                                .content // For Laravel CSRF token
+                        },
+                        body: JSON.stringify({
+                            name: name,
+                            year: year,
+                            gender: gender
+                        })
+                    });
+                    const result = await response.json();
+                    if (result.code == "1") {
+                        window.location = "/" + page_nam;
+                    } else {
+                        alert("Error: " + result.message);
+                    };
+                    $('#exampleModal').modal('hide');
+                };
+
+                // const response = await fetch("{{ route('dependents.add') }}", {
+                //     method: "POST",
+                //     headers: {
+                //         "Content-Type": "application/json",
+                //         "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
+                //             .content // For Laravel CSRF token
+                //     },
+                //     body: JSON.stringify({
+                //         name: name,
+                //         year: year,
+                //         gender: gender
+                //     })
+                // });
+
+                // const result = await response.json();
 
                 // console.log("Response:", result);
 
-                if (result.code == "1") {
-                    window.location = "/" + page_nam;
-                } else {
-                    alert("Error: " + result.message);
-                }
-                $('#exampleModal').modal('hide');
+                // if (result.code == "1") {
+                //     window.location = "/" + page_nam;
+                // } else {
+                //     alert("Error: " + result.message);
+                // }
+                // $('#exampleModal').modal('hide');
             } else {
-                // alert('Please fill in all the fields.');
+                alert('Please fill in all the fields.');
             }
         });
 

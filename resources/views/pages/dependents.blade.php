@@ -184,6 +184,7 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" id="page" value="login">
                 <div class="modal-footer text-end">
                     <button class="btn btn-black"
                         id="add-companion-btn"
