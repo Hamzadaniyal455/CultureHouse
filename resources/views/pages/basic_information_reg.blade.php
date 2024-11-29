@@ -57,7 +57,13 @@
                                     <td><?php echo ++$i; ?></td>
                                     <td>{{ $dependent->name }}</td>
                                     <td>{{ $dependent->gender }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($dependent->birth_year . '-01-01')->diff(\Carbon\Carbon::now())->format('%y years') }}
+                                    <td>
+                                        <span>
+                                            {{ \Carbon\Carbon::parse($dependent->birth_year . '-01-01')->diff(\Carbon\Carbon::now())->format('%y') }}
+                                        </span>
+                                        <span id="years">
+                                            years
+                                        </span>
                                     </td>
                                 </tr>
                             @endforeach
@@ -129,6 +135,7 @@
         const tableGender = document.getElementById('tableGender');
         const tableName = document.getElementById('tableName');
         const tableAge = document.getElementById('tableAge');
+        const years = document.getElementById('years');
 
         $(document).ready(function() {
             function updateLanguageContent(language) {
@@ -137,12 +144,13 @@
                     visitorType.textContent = 'Visitor Type:';
                     phoneNumber.textContent = 'Mobile Number:';
                     gender.textContent = 'Gender:';
-                    contRegButton.textContent = 'Continue Login';
+                    contRegButton.textContent = 'Continue Registration';
                     companionDetails.textContent = 'Companion Details';
                     companion.style.textAlign = 'left';
                     tableName.textContent = 'Name';
                     tableGender.textContent = 'Gender';
                     tableAge.textContent = 'Age';
+                    years.textContent = 'years';
                 } else {
                     // languageToggle.textContent = 'ENG';
                     document.body.style.direction = 'rtl';
@@ -155,6 +163,7 @@
                     tableName.textContent = 'الاسم';
                     tableGender.textContent = 'الجنس';
                     tableAge.textContent = 'العمر';
+                    years.textContent = 'سنة';
                 }
             }
 

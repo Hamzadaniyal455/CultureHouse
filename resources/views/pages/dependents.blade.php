@@ -142,8 +142,7 @@
                             <input class="form-control mx-2"
                                 id="companion-name"
                                 name="name"
-                                type="text"
-                                >
+                                type="text">
                             <input id="page_name"
                                 name="page_name"
                                 type="hidden"
@@ -176,23 +175,25 @@
                             <button class="btn gender-btn"
                                 id="male-btn"
                                 name="gender-male"
-                                value="male">Male</button>
+                                value="Male">Male</button>
                             <button class="btn gender-btn mx-2"
                                 id="female-btn"
                                 name="gender-female"
-                                value="female">Female</button>
+                                value="Female">Female</button>
                         </div>
                     </div>
                 </div>
-                <input type="hidden" id="page" value="login">
+                <input id="page"
+                    type="hidden"
+                    value="login">
                 <div class="modal-footer text-end">
                     <button class="btn btn-black"
                         id="add-companion-btn"
                         type="button">Add</button>
                     <button class="btn btn-white"
+                        id="cancel-button"
                         data-dismiss="modal"
-                        type="button"
-                        id="cancel-button">Cancel</button>
+                        type="button">Cancel</button>
                 </div>
             </div>
         </div>
@@ -230,7 +231,7 @@
                     for (i = 0; i < gender.length; i++) {
                         gender[i].textContent = "Gender:"
                         ageDisplay[i].textContent = "Age:";
-                        age[i].textContent= 'years';
+                        age[i].textContent = 'years';
                     }
 
                     addComp.textContent = '+ Add Companions';
@@ -271,6 +272,8 @@
                     addButton.textContent = 'اضافة';
                     cancelButton.textContent = 'الغاء';
                     contloginButton.textContent = 'مُتابعة التّسجيل';
+                    document.getElementById('male-btn').value = 'ذكر';
+                    document.getElementById('female-btn').value = 'انثى';
                 }
             }
 

@@ -133,7 +133,7 @@
         addCompanionButton.addEventListener('click', async () => {
             const name = document.getElementById('companion-name').value;
             const year = document.getElementById('birth_year').value;
-            const gender = maleButton.classList.contains('active') ? 'Male' : 'Female';
+            const gender = maleButton.classList.contains('active') ? maleButton.value : femaleButton.value;
             const page_nam = document.getElementById('page_name').value;
             const pageType = document.getElementById('page').value;
 

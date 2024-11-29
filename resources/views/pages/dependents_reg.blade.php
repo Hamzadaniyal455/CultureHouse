@@ -259,11 +259,11 @@
                             <button class="btn gender-btn"
                                 id="male-btn"
                                 name="gender-male"
-                                value="male">Male</button>
+                                value="Male">Male</button>
                             <button class="btn gender-btn mx-2"
                                 id="female-btn"
                                 name="gender-female"
-                                value="female">Female</button>
+                                value="Female">Female</button>
                         </div>
                     </div>
                 </div>
@@ -377,8 +377,8 @@
                     cancelButton.textContent = 'الغاء';
                     contRegButton.textContent = 'مُتابعة التّسجيل';
                     comp_card.style.textAlign = 'right';
-                    document.getElementById('male-btn').setAttribute('data-gender','ذكر')
-                    document.getElementById('female-btn').setAttribute('data-gender','انثى')
+                    document.getElementsByName('Male').value = 'ذكر';
+                    document.getElementsByName('Female').value = 'انثى';
                 }
             }
 

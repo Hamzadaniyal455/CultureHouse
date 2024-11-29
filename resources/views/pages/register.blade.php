@@ -16,7 +16,7 @@
     <div class="visitor-type">
         <button class="type-option active"
             id="citizen"
-            data-type="Citizen"
+            data-type="National"
             type="button">National</button>
         <button class="type-option"
             id="resident"
@@ -52,18 +52,18 @@
 
             <input id="id-number"
                 name="id-number"
-                type="text">
+                type="number">
         </div>
 
         <!-- <div class="mb-3" id="field-iqama-number" style="display: none;">
-                                                                                        <label for="iqama-number">Iqama Number</label>
-                                                                                        <input id="iqama-number" type="text" placeholder="Enter your Iqama number">
-                                                                                    </div>
+                                                                                            <label for="iqama-number">Iqama Number</label>
+                                                                                            <input id="iqama-number" type="text" placeholder="Enter your Iqama number">
+                                                                                        </div>
 
-                                                                                    <div class="mb-3" id="field-passport-number" style="display: none;">
-                                                                                        <label for="passport-number">Passport Number</label>
-                                                                                        <input id="passport-number" type="text" placeholder="Enter your Passport number">
-                                                                                    </div> -->
+                                                                                        <div class="mb-3" id="field-passport-number" style="display: none;">
+                                                                                            <label for="passport-number">Passport Number</label>
+                                                                                            <input id="passport-number" type="text" placeholder="Enter your Passport number">
+                                                                                        </div> -->
 
         <div>
             <label id="mobile"
@@ -71,7 +71,7 @@
             <input class="phone"
                 id="mobile-number"
                 name="mobile-number"
-                type="tel"
+                type="number"
                 {{-- placeholder="Enter your mobile number" --}}
                 required>
         </div>
@@ -589,7 +589,7 @@
                     button.classList.add('active');
 
                     const type = button.getAttribute('data-type');
-                    if (type === 'Citizen') {
+                    if (type === 'National') {
                         idField.style.display = 'block';
                         iqamaField.style.display = 'none';
                         // passportField.style.display = 'none';
@@ -711,8 +711,8 @@
                     contReg.textContent = 'متابعة التسجيل';
                     // text align right
                     formFields.style.textAlign = 'right';
-                    document.getElementById('male').setAttribute('data-gender','ذكر')
-                    document.getElementById('female').setAttribute('data-gender','انثى')
+                    document.getElementById('male').setAttribute('data-gender', 'ذكر')
+                    document.getElementById('female').setAttribute('data-gender', 'انثى')
 
                     console.log('Language is Arabic');
                 }
