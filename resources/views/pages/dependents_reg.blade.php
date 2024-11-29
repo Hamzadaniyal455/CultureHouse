@@ -36,7 +36,7 @@
         </div>
     </div>
     <!-- <form action="{{ route('dependents.submit') }}" method="POST">
-                        @csrf -->
+                            @csrf -->
     <div class="companions-list mb-5"
         id="companions-list">
         @if ($dependents->isNotEmpty())
@@ -73,10 +73,18 @@
                                 <div class="col-2 text-end">
                                     <p class="age-display">Age:</p>
                                 </div>
-                                <div class="col-4 text-end">
+                                {{-- <div class="col-4 text-end">
                                     <p class="age">
                                         {{ \Carbon\Carbon::parse($dependent->birth_year . '-01-01')->diff(\Carbon\Carbon::now())->format('%y years') }}
                                     </p>
+                                </div> --}}
+                                <div class="col-4 text-end">
+                                    <span>
+                                        {{ \Carbon\Carbon::parse($dependent->birth_year . '-01-01')->diff(\Carbon\Carbon::now())->format('%y') }}
+                                    </span>
+                                    <span class="age">
+                                        years
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -91,12 +99,11 @@
     </div>
 
     <!-- <a href="{{ route('information_reg') }}">
-                                <button class="action-button-black">Continue Registration</button>
-                            </a> -->
+                                    <button class="action-button-black">Continue Registration</button>
+                                </a> -->
     <div class="tw-center">
         <button class="action-button-black"
             id="continue-reg-button"
-
             type="submit">
             Continue Registration
         </button>
@@ -321,7 +328,8 @@
                     for (i = 0; i < gender.length; i++) {
                         gender[i].textContent = "Gender:"
                         ageDisplay[i].textContent = "Age:";
-                        age[i].innerHTML.split(' ')[1] = 'years';
+                        // age[i].innerHTML.split(' ')[1] = 'years';
+                        age[i].textContent = 'years';
                     }
 
                     addComp.textContent = '+ Add Companions';
@@ -344,8 +352,9 @@
                     selectCompCont.textContent = 'حدد المرافقين المتواجدين معك حاليا، أو أضف مرافق جديد';
                     for (i = 0; i < gender.length; i++) {
                         gender[i].textContent = "الجنس"
-                        let s = age[i].innerHTML.split(' ')[1] = 'سنة';
-                        age[i].textContent = age[i].innerHTML.split(' ')[0] + ' ' + s;
+                        // let s = age[i].innerHTML.split(' ')[1] = 'سنة';
+                        // age[i].textContent = age[i].innerHTML.split(' ')[0] + ' ' + s;
+                        age[i].textContent = 'سنة';
                         ageDisplay[i].textContent = "العمر:";
                     }
 

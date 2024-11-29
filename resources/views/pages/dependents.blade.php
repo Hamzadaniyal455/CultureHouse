@@ -58,10 +58,10 @@
                                             type="checkbox"
                                             value="{{ $dependent->id }}">
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-2">
                                         <p class="gender">Gender:</p>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <p>
                                             {{ $dependent->gender }}
                                         </p>
@@ -70,9 +70,12 @@
                                         <p class="age-display">Age:</p>
                                     </div>
                                     <div class="col-4 text-end">
-                                        <p class="age">
-                                            {{ \Carbon\Carbon::parse($dependent->birth_year . '-01-01')->diff(\Carbon\Carbon::now())->format('%y years') }}
-                                        </p>
+                                        <span>
+                                            {{ \Carbon\Carbon::parse($dependent->birth_year . '-01-01')->diff(\Carbon\Carbon::now())->format('%y') }}
+                                        </span>
+                                        <span class="age">
+                                            years
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -226,7 +229,7 @@
                     for (i = 0; i < gender.length; i++) {
                         gender[i].textContent = "Gender:"
                         ageDisplay[i].textContent = "Age:";
-                        age[i].innerHTML.split(' ')[1] = 'years';
+                        age[i].textContent= 'years';
                     }
 
                     addComp.textContent = '+ Add Companions';
@@ -248,9 +251,10 @@
                     selectCompStyle.classList.add('text-right');
                     selectCompCont.textContent = 'حدد المرافقين المتواجدين معك حاليا، أو أضف مرافق جديد';
                     for (i = 0; i < gender.length; i++) {
-                        gender[i].textContent = "الجنس"
-                        let s = age[i].innerHTML.split(' ')[1] = 'سنة';
-                        age[i].textContent = age[i].innerHTML.split(' ')[0] + ' ' + s;
+                        gender[i].textContent = "الجنس";
+                        age[i].textContent = 'سنة';
+                        // let s = age[i].innerHTML.split(' ')[1] = 'سنة';
+                        // age[i].textContent = age[i].innerHTML.split(' ')[0] + ' ' + s;
                         ageDisplay[i].textContent = "العمر:";
                     }
 
