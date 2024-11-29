@@ -230,7 +230,7 @@
                             <input id="page_name"
                                 name="page_name"
                                 type="hidden"
-                                value="dependents">
+                                value="dependents_reg">
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-3">
@@ -377,6 +377,8 @@
                     cancelButton.textContent = 'الغاء';
                     contRegButton.textContent = 'مُتابعة التّسجيل';
                     comp_card.style.textAlign = 'right';
+                    document.getElementById('male-btn').setAttribute('data-gender','ذكر')
+                    document.getElementById('female-btn').setAttribute('data-gender','انثى')
                 }
             }
 

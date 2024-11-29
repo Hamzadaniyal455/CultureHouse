@@ -670,6 +670,7 @@
         const contReg = document.getElementById('submit-button');
         const formFields = document.getElementById('form-fields');
 
+
         $(document).ready(function() {
             function updateLanguageContent(language) {
                 if (language === 'en') {
@@ -710,6 +711,9 @@
                     contReg.textContent = 'متابعة التسجيل';
                     // text align right
                     formFields.style.textAlign = 'right';
+                    document.getElementById('male').setAttribute('data-gender','ذكر')
+                    document.getElementById('female').setAttribute('data-gender','انثى')
+
                     console.log('Language is Arabic');
                 }
             }
