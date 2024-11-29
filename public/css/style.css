@@ -452,11 +452,23 @@ h3 {
 }
 
 /* modal */
-.modal-custom {
-    background-image: url('../images/background_image.png');
+.modal-content {
+    background-image: url('../images/background_image.png') ! important;
+    background-size: cover !important;
+    background-position: center ! important;
+    background-attachment: fixed ! important;
+    background-repeat: no-repeat ! important;
     border-radius: 8px;
     padding: 20px;
 }
+
+/* .modal-body{
+    background-image: url('../images/background_image.png') ! important;
+    background-size: cover !important;
+    background-position: center ! important;
+    background-attachment: fixed ! important;
+    background-repeat: no-repeat ! important;
+} */
 
 .modal-header {
     border-bottom: none;

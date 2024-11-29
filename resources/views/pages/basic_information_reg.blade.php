@@ -15,9 +15,9 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-5">
-                        <p>Visitor Type:</p>
-                        <p>Phone Number: </p>
-                        <p>Gender: </p>
+                        <p id="visitor-type">Visitor Type:</p>
+                        <p id="phone-number">Phone Number: </p>
+                        <p id="gender">Gender: </p>
                     </div>
                     <div class="col-md-2">
                         <div id="visitor-type-display">{{ $visitor->type }}</div>
@@ -33,65 +33,66 @@
             @endif
         </div>
 
-        <div class="text-left">
-            <h4>
+        <div id="companion">
+            <h4 id="companion-details">
                 Companion Details
             </h4>
             <div>
-                <?php $i=0; ?>
+                <?php $i = 0; ?>
                 <table class="table">
                     <thead class="thead-dark border">
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Gender</th>
-                            <th>Age</th>
+                            <th id="tableName">Name</th>
+                            <th id="tableGender">Gender</th>
+                            <th id="tableAge">Age</th>
                             {{-- <th class="text-center">Action</th> --}}
                         </tr>
                     </thead>
                     <tbody class="border">
-                    @if ($dependents->isNotEmpty())
-                    
-                        @foreach ($dependents as $dependent)
+                        @if ($dependents->isNotEmpty())
+
+                            @foreach ($dependents as $dependent)
+                                <tr>
+                                    <td><?php echo ++$i; ?></td>
+                                    <td>{{ $dependent->name }}</td>
+                                    <td>{{ $dependent->gender }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($dependent->birth_year . '-01-01')->diff(\Carbon\Carbon::now())->format('%y years') }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
                             <tr>
-                                <td><?php echo ++$i; ?></td>
-                                <td>{{ $dependent->name }}</td>
-                                <td>{{ $dependent->gender }}</td>
-                                <td>{{ \Carbon\Carbon::parse($dependent->birth_year . '-01-01')->diff(\Carbon\Carbon::now())->format('%y years') }}</td>
+                                <td colspan="4">No dependents found.</td>
                             </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td colspan="4">No dependents found.</td>
-                        </tr>
-                    @endif
+                        @endif
                         <!-- <tr>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>Male</td>
-                            <td>25</td>
-                            {{-- <td class="text-center">
+                                    <td>1</td>
+                                    <td>John Doe</td>
+                                    <td>Male</td>
+                                    <td>25</td>
+                                    {{-- <td class="text-center">
                                 <i class="fa fa-edit"></i>
                             </td> --}}
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>John Doe</td>
-                            <td>Male</td>
-                            <td>25</td>
-                            {{-- <td class="text-center">
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>John Doe</td>
+                                    <td>Male</td>
+                                    <td>25</td>
+                                    {{-- <td class="text-center">
                                 <i class="fa fa-edit"></i>
                             </td> --}}
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>John Doe</td>
-                            <td>Male</td>
-                            <td>25</td>
-                            {{-- <td class="text-center">
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>John Doe</td>
+                                    <td>Male</td>
+                                    <td>25</td>
+                                    {{-- <td class="text-center">
                                 <i class="fa fa-edit"></i>
                             </td> --}}
-                        </tr> -->
+                                </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -99,19 +100,69 @@
 
         <div class="tw-center mt-5">
             <a href="{{ route('reg_successful') }}">
-                <button class="action-button-black">Continue Registration</button>
+                <button class="action-button-black" id="cont-register-button">Continue Registration</button>
             </a>
         </div>
     </div>
 
     <style>
-        thead > tr > th {
+        thead>tr>th {
             background-color: #36E39B !important;
             border: 1px solid black !important;
         }
 
-        tbody > tr > td {
+        tbody>tr>td {
             border: 1px solid black !important;
         }
     </style>
+
+    <script>
+        // const languageToggle = document.getElementById('language-toggle');
+        const visitorType = document.getElementById('visitor-type');
+        const phoneNumber = document.getElementById('phone-number');
+        const gender = document.getElementById('gender');
+        const contRegButton = document.getElementById('cont-register-button');
+        const registerButton = document.getElementById('register-button');
+        const welcomeText = document.getElementById('welcome-text');
+        const companionDetails = document.getElementById('companion-details');
+        const companion = document.getElementById('companion');
+        const tableGender = document.getElementById('tableGender');
+        const tableName = document.getElementById('tableName');
+        const tableAge = document.getElementById('tableAge');
+
+        $(document).ready(function() {
+            function updateLanguageContent(language) {
+                if (language === 'en') {
+                    document.body.style.direction = 'ltr';
+                    visitorType.textContent = 'Visitor Type:';
+                    phoneNumber.textContent = 'Mobile Number:';
+                    gender.textContent = 'Gender:';
+                    contRegButton.textContent = 'Continue Login';
+                    companionDetails.textContent = 'Companion Details';
+                    companion.style.textAlign = 'left';
+                    tableName.textContent = 'Name';
+                    tableGender.textContent = 'Gender';
+                    tableAge.textContent = 'Age';
+                } else {
+                    // languageToggle.textContent = 'ENG';
+                    document.body.style.direction = 'rtl';
+                    visitorType.textContent = ' نوع الزائر';
+                    phoneNumber.textContent = 'رقم الجوال';
+                    gender.textContent = 'الجنس';
+                    contRegButton.textContent = 'مُتابعة التّسجيل';
+                    companionDetails.textContent = 'معلومـــــات المٌرافقيـــــن';
+                    companion.style.textAlign = 'right';
+                    tableName.textContent = 'الاسم';
+                    tableGender.textContent = 'الجنس';
+                    tableAge.textContent = 'العمر';
+                }
+            }
+
+            // Retrieve language from localStorage or default to 'en'
+            const savedLanguage = localStorage.getItem('language') || 'en';
+
+            // Apply the saved language
+            updateLanguageContent(savedLanguage);
+        })
+    </script>
 @endsection

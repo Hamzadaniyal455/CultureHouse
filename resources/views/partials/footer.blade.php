@@ -161,7 +161,7 @@
                 }
                 $('#exampleModal').modal('hide');
             } else {
-                alert('Please fill in all the fields.');
+                // alert('Please fill in all the fields.');
             }
         });
 

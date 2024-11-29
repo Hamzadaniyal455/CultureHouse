@@ -22,7 +22,7 @@
         <div class="col-md-4 text-end">
             <!-- <button class="add-companion-button">+ Add Companion</button> -->
             <button class="add-companion-button"
-                id="add-companion-btn"
+                id="add-companion-btn2"
                 data-toggle="modal"
                 data-target="#exampleModal"
                 type="button">
@@ -115,7 +115,7 @@
             role="document">
             <div class="modal-content modal-custom">
                 <div class="modal-header row">
-                    <h5 class="modal-title col-md-10 text-left"
+                    <h5 class="modal-title col-md-10"
                         id="exampleModalLabel">Add Companion</h5>
                     <div class="text-end col-md-2">
                         <button class="close no-border"
@@ -128,9 +128,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="d-flex align-items-center mb-3">
-                        <label class="col-3 text-left"
+                        <label class="col-3"
+                            id="companion-name2"
                             for="companion-name">
-                            <b>
+                            <b id="companion-name-label">
                                 Name
                             </b>
                         </label>
@@ -139,7 +140,7 @@
                                 id="companion-name"
                                 name="name"
                                 type="text"
-                                placeholder="Enter companion name">
+                                >
                             <input id="page_name"
                                 name="page_name"
                                 type="hidden"
@@ -147,11 +148,12 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-3">
-                        <label class="col-3 text-left"><b>
+                        <label class="col-3"
+                            id="birth-year2">
+                            <b id="birth-year">
                                 Birth Year
                             </b>
                         </label>
-                        <!-- <input class="form-control text-center mx-2 col-9" id="companion-age" readonly> -->
                         <div class="col-9">
                             <select class="form-control mx-2"
                                 id="birth_year"
@@ -167,13 +169,12 @@
                         </div>
                     </div>
                     <div>
-                        <!-- <label for="companion-gender">Gender</label> -->
                         <div class="d-flex">
                             <button class="btn gender-btn"
                                 id="male-btn"
                                 name="gender-male"
                                 value="male">Male</button>
-                            <button class="btn gender-btn"
+                            <button class="btn gender-btn mx-2"
                                 id="female-btn"
                                 name="gender-female"
                                 value="female">Female</button>
@@ -186,7 +187,8 @@
                         type="button">Add</button>
                     <button class="btn btn-white"
                         data-dismiss="modal"
-                        type="button">Cancel</button>
+                        type="button"
+                        id="cancel-button">Cancel</button>
                 </div>
             </div>
         </div>
@@ -200,9 +202,18 @@
         const selectCompStyle = document.getElementById('select-companion');
         const gender = document.getElementsByClassName('gender');
         const contloginButton = document.getElementById('cont-login-button');
-        const addComp = document.getElementById('add-companion-btn');
+        const addComp = document.getElementById('add-companion-btn2');
         const age = document.getElementsByClassName('age');
         const ageDisplay = document.getElementsByClassName('age-display');
+        const addComp2 = document.getElementById('exampleModalLabel');
+        const modalName = document.getElementById('companion-name-label')
+        const birthYear = document.getElementById('birth-year');
+        const modalNameAlign = document.getElementById('companion-name2')
+        const birthYearAlign = document.getElementById('birth-year2');
+        const male = document.getElementById('male-btn');
+        const female = document.getElementById('female-btn');
+        const addButton = document.getElementById('add-companion-btn');
+        const cancelButton = document.getElementById('cancel-button');
 
         $(document).ready(function() {
             function updateLanguageContent(language) {
@@ -218,8 +229,17 @@
                         age[i].innerHTML.split(' ')[1] = 'years';
                     }
 
-
                     addComp.textContent = '+ Add Companions';
+                    addComp2.textContent = 'Add Companions';
+                    addComp2.style.textAlign = 'left';
+                    modalName.textContent = 'Name';
+                    modalNameAlign.style.textAlign = 'left';
+                    birthYearAlign.style.textAlign = 'left';
+                    birthYear.textContent = 'Birth Year';
+                    male.textContent = 'Male';
+                    female.textContent = 'Female';
+                    addButton.textContent = 'Add';
+                    cancelButton.textContent = 'Cancel';
                     contloginButton.textContent = 'Continue Login';
                 } else {
                     document.body.style.direction = 'rtl';
@@ -235,6 +255,16 @@
                     }
 
                     addComp.textContent = '+ اضافة مرافق';
+                    addComp2.textContent = 'اضافة مرافق';
+                    addComp2.style.textAlign = 'right';
+                    modalName.textContent = 'الاسم';
+                    modalNameAlign.style.textAlign = 'right';
+                    birthYearAlign.style.textAlign = 'right';
+                    birthYear.textContent = 'سنة الميلاد';
+                    male.textContent = 'ذكر';
+                    female.textContent = 'انثى';
+                    addButton.textContent = 'اضافة';
+                    cancelButton.textContent = 'الغاء';
                     contloginButton.textContent = 'مُتابعة التّسجيل';
                 }
             }
