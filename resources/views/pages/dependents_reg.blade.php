@@ -36,7 +36,7 @@
         </div>
     </div>
     <!-- <form action="{{ route('dependents.submit') }}" method="POST">
-                                @csrf -->
+                                    @csrf -->
     <div class="companions-list mb-5"
         id="companions-list">
         @if ($dependents->isNotEmpty())
@@ -62,7 +62,7 @@
                                     <p class="gender">Gender:</p>
                                 </div>
                                 <div class="col-3">
-                                    <p >
+                                    <p>
                                         {{ $dependent->gender }}
                                     </p>
                                 </div>
@@ -100,8 +100,8 @@
     </div>
 
     <!-- <a href="{{ route('information_reg') }}">
-                                        <button class="action-button-black">Continue Registration</button>
-                                    </a> -->
+                                            <button class="action-button-black">Continue Registration</button>
+                                        </a> -->
     <div class="tw-center">
         <button class="action-button-black"
             id="continue-reg-button"
@@ -377,8 +377,8 @@
                     cancelButton.textContent = 'الغاء';
                     contRegButton.textContent = 'مُتابعة التّسجيل';
                     comp_card.style.textAlign = 'right';
-                    document.getElementsByName('Male').value = 'ذكر';
-                    document.getElementsByName('Female').value = 'انثى';
+                    document.getElementById('male-btn').value = 'ذكر';
+                    document.getElementById('female-btn').value = 'انثى';
                 }
             }
 

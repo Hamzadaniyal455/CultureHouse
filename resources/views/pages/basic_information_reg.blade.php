@@ -150,7 +150,9 @@
                     tableName.textContent = 'Name';
                     tableGender.textContent = 'Gender';
                     tableAge.textContent = 'Age';
-                    years.textContent = 'years';
+                    for (i = 0; i < years.length; i++) {
+                        years[i].textContent = 'years';
+                    }
                 } else {
                     // languageToggle.textContent = 'ENG';
                     document.body.style.direction = 'rtl';
@@ -163,7 +165,9 @@
                     tableName.textContent = 'الاسم';
                     tableGender.textContent = 'الجنس';
                     tableAge.textContent = 'العمر';
-                    years.textContent = 'سنة';
+                    for (i = 0; i < years.length; i++) {
+                        years[i].textContent = 'سنة';
+                    }
                 }
             }
 
