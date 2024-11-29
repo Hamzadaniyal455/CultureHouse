@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-md-8"
             id="select-companion">
-            <h3 id="select-comp">Select Companions</h3>
+            <h3 id="select-comp">Register Companions</h3>
             <p id="select-comp-cont">Select the companions currently with you, or add a new companion.</p>
         </div>
         <div class="col-md-4 text-end">
@@ -327,7 +327,7 @@
                 if (language === 'en') {
                     document.body.style.direction = 'ltr';
                     register.textContent = 'New Registration';
-                    selectComp.textContent = 'Select Dependents';
+                    selectComp.textContent = 'Register Companions';
                     selectCompCont.textContent = 'Select the companions currently with you, or add a new companion';
                     selectCompStyle.classList.add('text-left');
                     for (i = 0; i < gender.length; i++) {
