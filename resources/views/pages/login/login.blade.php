@@ -19,7 +19,6 @@
                 <p>{{ session('error') }}</p>
             </div>
         @endif
-        <!-- <form class="align-items-center" action="{{ route('login.submit') }}" method="POST"> -->
         <form class="align-items-center"
             id="phoneForm">
             @csrf
@@ -30,8 +29,6 @@
                     type="number"
                     placeholder="59xxxxxxxxx" />
 
-                <!-- <input
-    class="no-border w-100" id="phone" name="phone" type="text" placeholder="Enter Your Phone Number"/> -->
             </div>
 
             <!-- <a class="action-button mt-5" id="login-button" href="{{ route('information') }}"> -->
@@ -54,11 +51,9 @@
                 if (language === 'en') {
                     document.body.style.direction = 'ltr';
                     loginButton.textContent = 'Login';
-                    console.log('Language is English');
                 } else {
                     document.body.style.direction = 'rtl';
                     loginButton.textContent = 'سجِّل دخولك';
-                    console.log('Language is Arabic');
                 }
             }
 

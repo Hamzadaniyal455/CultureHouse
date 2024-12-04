@@ -32,6 +32,9 @@
     <link href="https://cdn.tutorialjinni.com/intl-tel-input/17.0.19/css/intlTelInput.css"
         rel="stylesheet" />
 
+        <link href="{{ asset('fonts/Lancea.otf') }}"
+        rel="preload" as="font" type="font/otf" crossorigin="anonymous">
+
     <script src={{ asset('js/sweetalert.js') }}></script>
 
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
@@ -54,12 +57,34 @@
 <body>
     <header>
         <div class="container">
+            <div class="row">
+                <div class="col-md-3 text-right">
+                    @if (Route::currentRouteName() === 'home' || Route::currentRouteName() === 'change-language')
+                        <form action="{{ route('change-language') }}"
+                            method="POST">
+                            @csrf
+                            <input name="language"
+                                type="hidden"
+                                value="ar">
+                            <button class="align-self-end"  id="language-toggle"
+                                type="submit">عربي</button>
+                        </form>
+                    @endif
+                </div>
+                <div class="col-md-6 tw-center">
+                    <img class="logo img-fluid"
+                        src="{{ asset('images/logo.png') }}"
+                        alt="">
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+
         </div>
     </header>
 
     <main>
-        <div class="container">
-            {{-- @yield('content') --}}
+        <div class="container english" >
+            @yield('content')
         </div>
     </main>
 

@@ -4,9 +4,9 @@
 
 @section('content')
     <div>
-        <h1 id="login-success">Registration Successful!</h1>
-        <div class="row mt-5">
-            <div class="col-md-8 text-left">
+        <h1 id="login-success">Login Successful!</h1>
+        <div class="row mt-5" >
+            <div class="col-md-8" id="text">
                 <h4 id="login-content">
                     You have successfully Registered in. <br>
                     Welcome to the House of Culture.
@@ -49,9 +49,11 @@
                     text.style.textAlign = 'left';
                 } else {
                     document.body.style.direction = 'rtl';
-                    login.textContent = 'تم إكمال التسجيل بنجاح';
+                    login.textContent = 'تمّ إكمال التّسجيل بنجـــــاح';
+                    login.style.fontSize = '45px';
                     loginContent.textContent = 'تم إكمال تسجيلك بنجاح أهلاً وسهلاً بك في بيت الثّقافة';
                     returnButton.textContent = 'العودة إلى الصفحة الرئيسية';
+                    returnButton.style.fontSize = '25px';
                     text.style.textAlign = 'right';
                 }
             }

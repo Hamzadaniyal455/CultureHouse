@@ -20,17 +20,20 @@
             </div>
         </div>
         <div class="mt-5">
-            <a class=""
-                href="{{ route('home') }}">
-                <button class="action-button-black">
-                    <div id="return-button">
-                        Return to Home Page
-                        {{-- <span>
-                        <img src="./assets/images/home.png" class="mx-2" alt="">
-                    </span> --}}
-                    </div>
-                </button>
-            </a>
+            {{-- <a class=""
+                href="{{ route('home') }}"> --}}
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="action-button-black" type="submit">
+                        <div id="return-button">
+                            Return to Home Page
+                            {{-- <span>
+                            <img src="./assets/images/home.png" class="mx-2" alt="">
+                        </span> --}}
+                        </div>
+                    </button>
+                </form>
+            {{-- </a> --}}
         </div>
     </div>
 
@@ -50,9 +53,12 @@
                     text.style.textAlign = 'left';
                 } else {
                     document.body.style.direction = 'rtl';
-                    login.textContent = 'تم تسجيل الدخول بنجاح';
+                    login.textContent = 'تمّ تسجيل الدّخول بنجـــــاح';
+                    login.style.fontSize = '45px';
                     loginContent.textContent = 'تم تسجيل دخولك بنجاح أهلاً وسهلاً بك في بيت الثقافة';
+                    loginContent.style.fontSize = '30px';
                     returnButton.textContent = 'العودة إلى الصفحة الرئيسية';
+                    returnButton.style.fontSize = '25px';
                     text.style.textAlign = 'right';
                 }
             }

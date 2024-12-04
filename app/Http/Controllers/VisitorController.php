@@ -47,7 +47,7 @@ class VisitorController extends Controller
         $data = $request->all();
         $name = $data['name'];
         $type = $data['type'];
-        $nationality = $data['nationality'];
+        $nationality = $data['nationality'] == '' ? 'saudi' : $data['nationality'];
         $id_number = $data['id_number'];
         $gender = $data['gender'];
         $phone = $data['phone'];

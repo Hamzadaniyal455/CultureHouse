@@ -19,7 +19,8 @@
             <h3 id="select-comp">Register Companions</h3>
             <p id="select-comp-cont">Select the companions currently with you, or add a new companion.</p>
         </div>
-        <div class="col-md-4 text-end">
+        <div class="col-md-3"
+            id="text-end">
             <!-- <button class="add-companion-button">+ Add Companion</button> -->
             <button class="add-companion-button"
                 id="add-companion-btn2"
@@ -36,59 +37,55 @@
         </div>
     </div>
     <!-- <form action="{{ route('dependents.submit') }}" method="POST">
-                                    @csrf -->
+                                                        @csrf -->
     <div class="companions-list mb-5"
         id="companions-list">
         @if ($dependents->isNotEmpty())
             <div class="row">
                 @foreach ($dependents as $dependent)
-                    <div class="col-md-6 col-sm-6 mb-3">
-                        <div class="companion-card border p-3"
-                            id="companion-card">
-                            <div class="row">
-                                <div class="col-3">
-                                    <i class="fa fa-user m-2"></i>
-                                </div>
-                                <div class="col-9">
-                                    <p><strong>{{ $dependent->name }}</strong></p>
-                                </div>
-                                {{-- <div class="col-2 text-end">
+                    {{-- <div class="col-md-6 col-sm-6 mb-3"> --}}
+                    <div class="col-md-3 mx-2 companion-card border p-3 col-sm-4 mb-3">
+                        {{-- <div class="companion-card border p-3"
+                            id="companion-card"> --}}
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-user m-2"></i>
+                            </div>
+                            <div class="col-9 companion-name-card">
+                                <p><strong>{{ $dependent->name }}</strong></p>
+                            </div>
+                            {{-- <div class="col-2 text-end">
                                         <input class="m-2"
                                             name="dependents[]"
                                             type="checkbox"
                                             value="{{ $dependent->id }}">
                                     </div> --}}
-                                <div class="col-3">
-                                    <p class="gender">Gender:</p>
-                                </div>
-                                <div class="col-3">
-                                    <p>
-                                        {{ $dependent->gender }}
-                                    </p>
-                                </div>
-                                {{-- <div class="col-6 text-end">
+                            <div class="col-3">
+                                <p class="gender">Gender:</p>
+                            </div>
+                            <div class="col-3"><p class="gender-display">{{$dependent->gender}}</p></div>
+                            {{-- <div class="col-6 text-end">
                                     <p class="age-display">Age:
                                         {{ \Carbon\Carbon::parse($dependent->birth_year . '-01-01')->diff(\Carbon\Carbon::now())->format('%y years') }}
                                     </p>
                                 </div> --}}
-                                <div class="col-2 text-end">
-                                    <p class="age-display">Age:</p>
-                                </div>
-                                {{-- <div class="col-4 text-end">
-                                    <p class="age">
-                                        {{ \Carbon\Carbon::parse($dependent->birth_year . '-01-01')->diff(\Carbon\Carbon::now())->format('%y years') }}
-                                    </p>
-                                </div> --}}
-                                <div class="col-4 text-end">
+                            <div class="col-2 text-end">
+                                <p class="age-display">Age:</p>
+                            </div>
+                            <div class="col-4 text-end">
+                                <p>
                                     <span>
                                         {{ \Carbon\Carbon::parse($dependent->birth_year . '-01-01')->diff(\Carbon\Carbon::now())->format('%y') }}
                                     </span>
-                                    <span class="age">
-                                        years
+                                    <span>
+                                        <small class="age">
+                                            years
+                                        </small>
                                     </span>
-                                </div>
+                                </p>
                             </div>
                         </div>
+                        {{-- </div> --}}
                     </div>
                 @endforeach
             </div>
@@ -100,8 +97,8 @@
     </div>
 
     <!-- <a href="{{ route('information_reg') }}">
-                                            <button class="action-button-black">Continue Registration</button>
-                                        </a> -->
+                                                                <button class="action-button-black">Continue Registration</button>
+                                                            </a> -->
     <div class="tw-center">
         <button class="action-button-black"
             id="continue-reg-button"
@@ -270,11 +267,11 @@
                 <input id="page"
                     type="hidden"
                     value="register">
-                <div class="modal-footer text-end">
-                    <button class="btn btn-black"
+                <div class="modal-footer justify-content-center">
+                    <button class="btn add-btn"
                         id="add-companion-btn"
                         type="button">Add</button>
-                    <button class="btn btn-white"
+                    <button class="btn cancel-btn"
                         id="cancel-button"
                         data-dismiss="modal"
                         type="button">Cancel</button>
@@ -285,18 +282,18 @@
 
     <script type="text/javascript">
         document.getElementById('continue-reg-button').addEventListener('click', async function() {
-            const response = await fetch("{{ route('visit_info.reg') }}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
-                        .content // For Laravel CSRF token
-                },
-                body: JSON.stringify({
-                    name: 1
-                })
-            });
-            const result = await response.json();
+            // const response = await fetch("{{ route('visit_info.reg') }}", {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //         "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
+            //             .content // For Laravel CSRF token
+            //     },
+            //     body: JSON.stringify({
+            //         name: 1
+            //     })
+            // });
+            // const result = await response.json();
             window.location = "/information_reg";
         });
 
@@ -307,6 +304,7 @@
         const selectCompCont = document.getElementById('select-comp-cont');
         const selectCompStyle = document.getElementById('select-companion');
         const gender = document.getElementsByClassName('gender');
+        const genderDisplay = document.getElementsByClassName('gender-display');
         const contRegButton = document.getElementById('continue-reg-button');
         const addComp = document.getElementById('add-companion-btn2');
         const age = document.getElementsByClassName('age');
@@ -321,20 +319,34 @@
         const addButton = document.getElementById('add-companion-btn');
         const cancelButton = document.getElementById('cancel-button');
         const comp_card = document.getElementById('companion-card');
+        const companionNameCard = document.getElementsByClassName('companion-name-card');
+        const textEnd = document.getElementById('text-end');
 
+        
         $(document).ready(function() {
+            // console.log(genderDisplay);
             function updateLanguageContent(language) {
                 if (language === 'en') {
                     document.body.style.direction = 'ltr';
                     register.textContent = 'New Registration';
+                    register.style.fontSize = '35px';
                     selectComp.textContent = 'Register Companions';
                     selectCompCont.textContent = 'Select the companions currently with you, or add a new companion';
+                    selectCompCont.style.fontSize = '14px';
                     selectCompStyle.classList.add('text-left');
+                    textEnd.style.textAlign = 'left';
                     for (i = 0; i < gender.length; i++) {
                         gender[i].textContent = "Gender:"
                         ageDisplay[i].textContent = "Age:";
-                        // age[i].innerHTML.split(' ')[1] = 'years';
                         age[i].textContent = 'years';
+                        companionNameCard[i].style.textAlign = 'left';
+                        if (genderDisplay[i].textContent === 'Male' || genderDisplay[i].textContent ===
+                            'ذكـــــر') {
+                            genderDisplay[i].textContent = 'Male';
+                        } else if (genderDisplay[i].textContent === 'Female' || genderDisplay[i].textContent ===
+                            'انثـــــى') {
+                            genderDisplay[i].textContent = 'Female';
+                        }
                     }
 
                     addComp.textContent = '+ Add Companions';
@@ -352,31 +364,67 @@
                     comp_card.style.textAlign = 'left';
                 } else {
                     document.body.style.direction = 'rtl';
-                    register.textContent = 'تسجيل جديد';
-                    selectComp.textContent = 'تحديد المُرافقين';
+                    register.textContent = 'تسجيـــــل جديـــــد';
+                    register.style.fontSize = '45px';
+                    selectComp.textContent = 'تسجيـــــل المُرافقِيـــــن';
+                    selectComp.style.fontSize = '35px';
                     selectCompStyle.classList.add('text-right');
                     selectCompCont.textContent = 'حدد المرافقين المتواجدين معك حاليا، أو أضف مرافق جديد';
+                    selectCompCont.style.fontSize = '18px';
+                    // console.log('123');
                     for (i = 0; i < gender.length; i++) {
                         gender[i].textContent = "الجنس"
-                        // let s = age[i].innerHTML.split(' ')[1] = 'سنة';
-                        // age[i].textContent = age[i].innerHTML.split(' ')[0] + ' ' + s;
                         age[i].textContent = 'سنة';
                         ageDisplay[i].textContent = "العمر:";
+                        companionNameCard[i].style.textAlign = 'right';
+                        console.log(genderDisplay[i]);
+                        if (genderDisplay[i].textContent === 'Male' || genderDisplay[i].textContent ===
+                            'ذكر') {
+                            genderDisplay[i].textContent = 'ذكر';
+                        } else if (genderDisplay[i].textContent === 'Female' || genderDisplay[i].textContent ===
+                            'انثى') {
+                            genderDisplay[i].textContent = 'انثى';
+                        }
                     }
 
+                    // addComp.textContent = '+ اضافة مرافق';
+                    // addComp2.textContent = 'اضافة مرافق';
+                    // addComp2.style.textAlign = 'right';
+                    // modalName.textContent = 'الاسم';
+                    // modalNameAlign.style.textAlign = 'right';
+                    // birthYearAlign.style.textAlign = 'right';
+                    // birthYear.textContent = 'سنة الميلاد';
+                    // male.textContent = 'ذكـــــر';
+                    // female.textContent = 'أنثـــــى';
+                    // addButton.textContent = 'إضافـــــة';
+                    // cancelButton.textContent = 'إلغـــــاء';
+                    // contRegButton.textContent = 'مُتابعة التّسجيل';
+                    // comp_card.style.textAlign = 'right';
+                    // document.getElementById('male-btn').value = 'ذكر';
+                    // document.getElementById('female-btn').value = 'انثى';
+
                     addComp.textContent = '+ اضافة مرافق';
+                    addComp.style.fontSize = '20px';
                     addComp2.textContent = 'اضافة مرافق';
+                    addComp2.style.fontSize = '31px';
                     addComp2.style.textAlign = 'right';
                     modalName.textContent = 'الاسم';
+                    modalName.style.fontSize = '20px';
                     modalNameAlign.style.textAlign = 'right';
+                    modalNameAlign.style.fontSize = '20px';
                     birthYearAlign.style.textAlign = 'right';
                     birthYear.textContent = 'سنة الميلاد';
-                    male.textContent = 'ذكر';
-                    female.textContent = 'انثى';
-                    addButton.textContent = 'اضافة';
-                    cancelButton.textContent = 'الغاء';
+                    birthYear.style.fontSize = '20px';
+                    male.textContent = 'ذكـــــر';
+                    male.style.fontSize = '20px';
+                    female.textContent = 'أنثـــــى';
+                    female.style.fontSize = '20px';
+                    addButton.textContent = 'إضافـــــة';
+                    addButton.style.fontSize = '20px';
+                    cancelButton.textContent = 'إلغـــــاء';
+                    cancelButton.style.fontSize = '20px';
                     contRegButton.textContent = 'مُتابعة التّسجيل';
-                    comp_card.style.textAlign = 'right';
+                    contRegButton.style.fontSize = '20px';
                     document.getElementById('male-btn').value = 'ذكر';
                     document.getElementById('female-btn').value = 'انثى';
                 }

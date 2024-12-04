@@ -6,7 +6,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"></script>
 
 <script>
-    // var input = document.querySelector("#phone");
     var input = document.querySelector(".phone");
 
     // Initialize intlTelInput
@@ -15,6 +14,9 @@
         preferredCountries: ["sa", "jp", "pk", "no"],
         utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
     });
+
+    let lang = localStorage.getItem('language');
+    const loginError = document.getElementById('loginError');
 
     document.querySelector("#phoneForm").addEventListener("submit", async function(e) {
         e.preventDefault();
@@ -33,67 +35,43 @@
                     })
                 });
 
+
                 const result = await response.json();
 
-                // console.log("Response:", result);
-
+                // Page redirect to information
                 if (result.code == "1") {
                     window.location = "/information";
                 } else {
-                    alert("Error: " + result.message);
+                    if (lang === 'en') {
+                        var errortext = result.message;
+                    } else {
+                        var errortext = "لم يتم العثور على رقم الهاتف.";
+                    }
+
+                    loginError.textContent = errortext;
                 }
             } catch (error) {
-                // console.error("AJAX error:", error);
-                alert("An error occurred. Please try again.");
+                if (lang === 'en') {
+                    var errortext = "An error occurred. Please try again.";
+                } else {
+                    var errortext = "حدث خطأ. يرجى المحاولة مرة أخرى.";
+                }
+                errorElement.textContent = loginError;
+                console.log("An error occurred. Please try again.");
             }
         } else {
-            alert("Invalid phone number. Please check your input.");
-
+            if (lang === 'en') {
+                var invalidPhone = "Invalid phone number. Please check your input.";
+            } else {
+                var invalidPhone = "رقم الهاتف غير صالح. يرجى التحقق من المدخلات الخاصة بك."
+            }
+            loginError.textContent = invalidPhone;
+            console.log("Invalid phone number. Please check your input.");
         }
     });
 </script>
 
 <script>
-    // document.addEventListener('DOMContentLoaded', () => {
-    //     const addCompanionButton = document.getElementById('add-companion');
-    //     const companionForm = document.getElementById('companion-form');
-    //     const saveCompanionButton = document.getElementById('save-companion');
-    //     const companionsList = document.getElementById('companions-list');
-
-    //     // Show the companion form
-    //     addCompanionButton.addEventListener('click', () => {
-    //         companionForm.classList.toggle('hidden');
-    //     });
-
-    //     // Save the companion and add it to the list
-    //     saveCompanionButton.addEventListener('click', () => {
-    //         const name = document.getElementById('companion-name').value;
-    //         const gender = document.getElementById('companion-gender').value;
-    //         const age = document.getElementById('companion-age').value;
-
-    //         if (name && gender && age) {
-    //             const companionCard = document.createElement('div');
-    //             companionCard.classList.add('companion-card');
-    //             companionCard.innerHTML = `
-    //     <p><strong>${name}</strong></p>
-    //     <p>Gender: ${gender}</p>
-    //     <p>Age: ${age} years</p>
-    //   `;
-    //             companionsList.appendChild(companionCard);
-
-    //             // Clear form inputs
-    //             document.getElementById('companion-name').value = '';
-    //             document.getElementById('companion-gender').value = 'Male';
-    //             document.getElementById('companion-age').value = '';
-
-    //             // Hide the form
-    //             companionForm.classList.add('hidden');
-    //         } else {
-    //             alert('Please fill in all fields!');
-    //         }
-    //     });
-    // });
-
     document.addEventListener('DOMContentLoaded', () => {
         const ageInput = document.getElementById('companion-age');
         // const ageIncrement = document.getElementById('age-increment');
@@ -133,7 +111,8 @@
         addCompanionButton.addEventListener('click', async () => {
             const name = document.getElementById('companion-name').value;
             const year = document.getElementById('birth_year').value;
-            const gender = maleButton.classList.contains('active') ? maleButton.value : femaleButton.value;
+            const gender = maleButton.classList.contains('active') ? maleButton.value : femaleButton
+                .value;
             const page_nam = document.getElementById('page_name').value;
             const pageType = document.getElementById('page').value;
 
@@ -157,7 +136,7 @@
                     if (result.code == "1") {
                         window.location = "/" + page_nam;
                     } else {
-                        alert("Error: " + result.message);
+                        // alert("Error: " + result.message);
                     };
                     $('#exampleModal').modal('hide');
                 } else if (pageType == 'register') {
@@ -179,7 +158,7 @@
                     if (result.code == "1") {
                         window.location = "/" + page_nam;
                     } else {
-                        alert("Error: " + result.message);
+                        // alert("Error: " + result.message);
                     };
                     $('#exampleModal').modal('hide');
                 };
@@ -209,7 +188,7 @@
                 // }
                 // $('#exampleModal').modal('hide');
             } else {
-                alert('Please fill in all the fields.');
+                // alert('Please fill in all the fields.');
             }
         });
 
@@ -218,8 +197,8 @@
     const languageToggleButton = document.getElementById('language-toggle');
 
     if (languageToggleButton) {
-        // Initialize the language value from localStorage or default to 'en'
-        let language = localStorage.getItem('language') || 'en';
+        // Initialize the language value from localStorage or default to 'ar'
+        let language = localStorage.getItem('language') || 'ar';
 
         // Update the button text based on the saved language
         updateButtonText(language);
@@ -232,18 +211,31 @@
             // Save the new value in localStorage
             localStorage.setItem('language', language);
 
-            // Update the button text
-            updateButtonText(language);
-
-            window.location.reload();
-
-            // Log the current language to the console
-            console.log('Current Language:', language);
+            // Use AJAX to pass language to the controller
+            $.ajax({
+                url: "{{ route('change-language') }}", // Replace with your actual route
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // Add CSRF token for Laravel
+                },
+                data: {
+                    language: language
+                },
+                success: function(response) {
+                    console.log('Language changed successfully:', response);
+                    // Reload the page to reflect language changes
+                    window.location.reload();
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error changing language:', error);
+                }
+            });
         });
 
         // Function to update button text
         function updateButtonText(language) {
             languageToggleButton.textContent = language === 'en' ? 'عربي' : 'English';
+            languageToggleButton.style.fontSize = '25px';
         }
     }
 </script>

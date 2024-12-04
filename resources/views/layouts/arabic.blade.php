@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 
 <head>
     <meta charset="UTF-8">
@@ -17,6 +17,9 @@
         rel="stylesheet">
     <link href="{{ asset('css/padding.css') }}"
         rel="stylesheet">
+
+    <link src="{{ asset('fonts/Lancea.otf') }}"
+        rel="preload">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -54,12 +57,35 @@
 <body>
     <header>
         <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 tw-center">
+                    <img class="logo img-fluid"
+                        src="{{ asset('images/logo.png') }}"
+                        alt="">
+                </div>
+                <div class="col-md-3">
+                    @if (Route::currentRouteName() === 'home' || Route::currentRouteName() === 'change-language')
+                        <form action="{{ route('change-language') }}"
+                            method="POST">
+                            @csrf
+                            <input name="language"
+                                type="hidden"
+                                value="en">
+                            <button class="align-self-auto"
+                                id="language-toggle"
+                                type="submit">English</button>
+                        </form>
+                    @endif
+                </div>
+            </div>
+
         </div>
     </header>
 
     <main>
-        <div class="container">
-            {{-- @yield('content') --}}
+        <div class="container arabic">
+            @yield('content')
         </div>
     </main>
 

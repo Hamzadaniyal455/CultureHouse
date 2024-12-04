@@ -3,11 +3,14 @@
 @section('title', 'Home Page')
 
 @section('content')
-    <h3 id="registration">New Registration</h3>
     <div class="steps-indicator mt-5">
         <img src="{{ asset('images/Steps2_eng.png') }}"
             alt="">
     </div>
+    <h3 class="mt-5 mb-4"
+        id="registration">New Registration</h3>
+
+    <p class="text-red" id="registerError"></p>
 
     {{-- <form action="{{ route('registration.store') }}" id="registration-form"> --}}
     <label id="visitor-type"
@@ -20,17 +23,17 @@
             type="button">National</button>
         <button class="type-option"
             id="resident"
-            data-type="resident"
+            data-type="Resident"
             type="button">Resident</button>
         <button class="type-option"
             id="tourist"
-            data-type="tourist"
+            data-type="Tourist"
             type="button">Tourist</button>
     </div>
 
     <div class="form-fields"
         id="form-fields">
-        <div class="mb-3">
+        <div class="mb-3 mt-4">
             <label id="full-name2"
                 for="full-name">Full Name</label>
             <input id="full-name"
@@ -56,19 +59,19 @@
         </div>
 
         <!-- <div class="mb-3" id="field-iqama-number" style="display: none;">
-                                                                                            <label for="iqama-number">Iqama Number</label>
-                                                                                            <input id="iqama-number" type="text" placeholder="Enter your Iqama number">
-                                                                                        </div>
+                                                                                                                        <label for="iqama-number">Iqama Number</label>
+                                                                                                                        <input id="iqama-number" type="text" placeholder="Enter your Iqama number">
+                                                                                                                    </div>
 
-                                                                                        <div class="mb-3" id="field-passport-number" style="display: none;">
-                                                                                            <label for="passport-number">Passport Number</label>
-                                                                                            <input id="passport-number" type="text" placeholder="Enter your Passport number">
-                                                                                        </div> -->
+                                                                                                                    <div class="mb-3" id="field-passport-number" style="display: none;">
+                                                                                                                        <label for="passport-number">Passport Number</label>
+                                                                                                                        <input id="passport-number" type="text" placeholder="Enter your Passport number">
+                                                                                                                    </div> -->
 
         <div>
             <label id="mobile"
                 for="mobile-number">Mobile Number</label>
-            <input class="phone"
+            <input class="phone no-border"
                 id="mobile-number"
                 name="mobile-number"
                 type="number"
@@ -507,6 +510,8 @@
     {{-- </form> --}}
 
     <script>
+        // let lang = localStorage.getItem('language');
+        const registerError = document.getElementById('registerError');
         async function handleSubmit(event) {
             event.preventDefault();
             const name = document.getElementById('full-name').value;
@@ -516,7 +521,13 @@
             const type = document.querySelector('.type-option.active').getAttribute('data-type');
 
             if (!iti.isValidNumber()) {
-                alert("Please enter a valid phone number.");
+                // alert("Please enter a valid phone number.");
+                if (lang == 'en') {
+                    var invalidPhone = "Please enter a valid phone number.";
+                } else {
+                    var invalidPhone = "يرجى إدخال رقم هاتف صالح.";
+                }
+                registerError.textContent = invalidPhone;
                 return;
             }
 
@@ -536,9 +547,10 @@
                     })
                 });
                 const check_registration = await request.json();
-                console.log(check_registration);
+                // console.log(check_registration);
                 if (check_registration.code == "1") {
-                    alert(check_registration.message);
+                    // alert(check_registration.message);
+                    
                     return;
                 }
 
@@ -564,10 +576,22 @@
                     console.log(result);
                     window.location = "/dependents_reg";
                 } else {
-                    alert("Error: " + result.message);
+                    // alert("Error: " + result.message);
+                    Swal.fire({
+                        position: "top-end",
+                        title: result.message,
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
                 }
             } else {
-                alert('Please fill in all fields!');
+                // alert('Please fill in all fields!');
+                Swal.fire({
+                    position: "top-end",
+                    title: "Please fill in all fields!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
             }
         }
 
@@ -592,9 +616,8 @@
                     if (type === 'National') {
                         idField.style.display = 'block';
                         iqamaField.style.display = 'none';
-                        // passportField.style.display = 'none';
                         nationalityField.style.display = 'none';
-                    } else if (type === 'resident') {
+                    } else if (type === 'Resident') {
                         idField.style.display = 'none';
                         iqamaField.style.display = 'block';
                         $(document).ready(function() {
@@ -622,22 +645,9 @@
 
 
                         // passportField.style.display = 'none';
-                    } else if (type === 'tourist') {
+                    } else if (type === 'Tourist') {
                         idField.style.display = 'block';
                         iqamaField.style.display = 'none';
-                        // $(document).ready(function() {
-                        //     function updateLanguageContent(language) {
-                        //         if (language === 'en') {
-                        //             nationalityField.textContent = 'Nationality';
-                        //         } else {
-                        //             nationalityField.textContent = 'الجنسية';
-                        //         }
-                        //     }
-                        //     const savedLanguage = localStorage.getItem('language') || 'en';
-
-                        //     // Apply the saved language
-                        //     updateLanguageContent(savedLanguage);
-                        // });
                         nationalityField.style.display = 'block';
                     }
                 });
@@ -677,7 +687,7 @@
                     document.body.style.direction = 'ltr';
                     registration.textContent = 'New Registration';
                     visitorType.textContent = 'Type of Visitor';
-                    citizen.textContent = 'Citizen';
+                    citizen.textContent = 'National';
                     resident.textContent = 'Resident';
                     tourist.textContent = 'Tourist';
                     fullName.textContent = 'Full Name';
@@ -695,19 +705,19 @@
 
                 } else {
                     document.body.style.direction = 'rtl';
-                    registration.textContent = 'تسجيل جديد';
+                    registration.textContent = 'تسجيـــــل جديـــــد';
                     visitorType.textContent = 'نوع الزائر';
-                    citizen.textContent = 'مواطن';
-                    resident.textContent = 'مقيم';
-                    tourist.textContent = 'سائح';
+                    citizen.textContent = 'مواطـــــن';
+                    resident.textContent = 'مقيـــــم';
+                    tourist.textContent = 'سائـــــح';
                     fullName.textContent = 'الاسم الكامل';
                     idNumber.textContent = 'رقم الهوية';
                     residenceNumber.textContent = 'رقم الإقامة';
                     mobileNumber.textContent = 'رقم الجوال';
                     nationalityLabel.textContent = 'الجنسية';
                     gender.textContent = 'الجنس';
-                    male.textContent = 'ذكر';
-                    female.textContent = 'انثى';
+                    male.textContent = 'ذكـــــر';
+                    female.textContent = 'أنثـــــى';
                     contReg.textContent = 'متابعة التسجيل';
                     // text align right
                     formFields.style.textAlign = 'right';
@@ -808,10 +818,18 @@
             padding: 0px !important;
         }
 
-        div.iti.iti--allow-dropdown.iti--separate-dial-code {
+        .form-fields div.iti.iti--allow-dropdown.iti--separate-dial-code {
             border: none !important;
-            width: 600px ! important;
+            width: 976px ! important;
             /* font-size: 20px; */
+        }
+
+        @media only screen and (min-width: 768px) and (max-width: 820px) {
+            .form-fields div.iti.iti--allow-dropdown.iti--separate-dial-code {
+                border: none !important;
+                width: 600px ! important;
+                /* font-size: 20px; */
+            }
         }
 
         p {

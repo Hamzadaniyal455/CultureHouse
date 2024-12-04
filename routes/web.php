@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Auth;
 
 // Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::post('/logout', [HomeController::class, 'logout'])->name('logout');
+Route::post('/', [HomeController::class, 'home'])->name('change-language');
 Route::get('/login', [HomeController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::get('/register', [HomeController::class, 'register'])->name('register');

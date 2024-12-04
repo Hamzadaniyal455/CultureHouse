@@ -3,7 +3,7 @@
 @section('title', 'Home Page')
 
 @section('content')
-    <h2 id="welcome-text">Welcome to The Culture House!</h2>
+    <h2 id="welcome-text">Welcome to The Culture House</h2>
     <div class="buttons">
         <a class="action-button"
             href="{{ route('login') }}">
@@ -36,8 +36,7 @@
             </div>
         </a>
     </div>
-
-    <script>
+    {{-- <script>
         // const languageToggle = document.getElementById('language-toggle');
         const loginButton = document.getElementById('login-button');
         const registerButton = document.getElementById('register-button');
@@ -65,5 +64,5 @@
             // Apply the saved language
             updateLanguageContent(savedLanguage);
         })
-    </script>
+    </script> --}}
 @endsection
